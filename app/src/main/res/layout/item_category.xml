@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout>
+
+    <data>
+
+        <variable
+            name="category"
+            type="com.example.ecommerceapp.data.model.category.CategoryModel" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/categoryCardView"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:layout_marginVertical="7dp"
+        android:layout_marginRight="7dp"
+        app:cardCornerRadius="9dp"
+
+        >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/categoryImg1Card"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginTop="6dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/categoryImg1"
+                    set_image_resource="@{category.images[0]}"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY"
+
+                    >
+
+                </com.google.android.material.imageview.ShapeableImageView>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/categoryImg2Card"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginLeft="6dp"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginRight="6dp"
+                app:layout_constraintBottom_toBottomOf="@id/categoryImg1Card"
+                app:layout_constraintLeft_toRightOf="@id/categoryImg1Card"
+                app:layout_constraintTop_toTopOf="@id/categoryImg1Card">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/categoryImg2"
+                    set_image_resource="@{category.images[1]}"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY">
+
+                </com.google.android.material.imageview.ShapeableImageView>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/categoryImg3Card"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="6dp"
+
+                app:layout_constraintLeft_toLeftOf="@id/categoryImg1Card"
+                app:layout_constraintTop_toBottomOf="@id/categoryImg1Card">
+
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/categoryImg3"
+                    set_image_resource="@{category.images[2]}"
+                    android:layout_width="match_parent"
+                    android:scaleType="fitXY"
+                    android:layout_height="match_parent"
+
+                    >
+
+                </com.google.android.material.imageview.ShapeableImageView>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/categoryImg4Card"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginLeft="6dp"
+                app:layout_constraintBottom_toBottomOf="@id/categoryImg3Card"
+                app:layout_constraintLeft_toRightOf="@id/categoryImg3Card"
+                app:layout_constraintTop_toTopOf="@id/categoryImg3Card">
+
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/categoryImg4"
+                    set_image_resource="@{category.images[3]}"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+
+                    android:scaleType="fitXY">
+
+
+                </com.google.android.material.imageview.ShapeableImageView>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/categoryName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="6dp"
+                android:fontFamily="@font/raleway_bold"
+                android:text="@{category.categoryName}"
+                android:textColor="@color/primary_text"
+                android:textSize="19sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="@id/categoryImg3Card"
+                app:layout_constraintTop_toBottomOf="@id/categoryImg3Card">
+
+            </com.google.android.material.textview.MaterialTextView>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+</layout>

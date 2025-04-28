@@ -1,0 +1,464 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".presentation.fragments.DetailFragment">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/productImg"
+        android:layout_width="match_parent"
+        android:layout_height="240dp"
+        android:layout_margin="100dp"
+        android:scaleType="fitXY"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </com.google.android.material.imageview.ShapeableImageView>
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/detailConstraintCard"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="50dp"
+        android:backgroundTint="#104FFFFF"
+        app:cardCornerRadius="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/productImg"
+        app:strokeColor="@color/background_white">
+
+        <ScrollView
+            android:id="@+id/scrollView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/detailConstraint"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="70dp">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/soldByText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/raleway_bold"
+                    android:text="@string/sold_by"
+                    android:textColor="@color/primary_text"
+                    android:textSize="20sp"
+                    app:layout_constraintLeft_toLeftOf="@id/detailConstraint"
+                    app:layout_constraintTop_toTopOf="@id/detailConstraint">
+
+                </com.google.android.material.textview.MaterialTextView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/productOwnerImgCard"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:layout_marginTop="10dp"
+                    app:cardCornerRadius="200dp"
+                    app:layout_constraintLeft_toLeftOf="@id/soldByText"
+                    app:layout_constraintRight_toRightOf="@id/soldByText"
+                    app:layout_constraintTop_toBottomOf="@id/soldByText"
+
+                    >
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/productOwnerImg"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/productowner">
+
+                    </com.google.android.material.imageview.ShapeableImageView>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/productOwnerName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:fontFamily="@font/raleway_bold"
+                    android:text="Jake"
+                    android:textColor="@color/second_text_color"
+                    android:textSize="20sp"
+                    app:layout_constraintLeft_toRightOf="@id/productOwnerImgCard"
+                    app:layout_constraintTop_toTopOf="@id/productOwnerImgCard">
+
+                </com.google.android.material.textview.MaterialTextView>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/ratingRecView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintLeft_toLeftOf="@id/productOwnerName"
+                    app:layout_constraintTop_toBottomOf="@id/productOwnerName"
+
+                    >
+
+                </androidx.recyclerview.widget.RecyclerView>
+
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/reviewCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:fontFamily="@font/raleway_bold"
+                    android:textColor="@color/second_text_color"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="@id/ratingRecView"
+                    app:layout_constraintLeft_toRightOf="@id/ratingRecView"
+                    app:layout_constraintTop_toTopOf="@id/ratingRecView"
+
+                    >
+
+                </com.google.android.material.textview.MaterialTextView>
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/line1"
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/line"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/productOwnerImgCard">
+
+                </com.google.android.material.imageview.ShapeableImageView>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/productTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="15dp"
+                    android:fontFamily="@font/raleway_bold"
+                    android:textColor="@color/primary_text"
+                    android:textSize="20sp"
+                    app:layout_constraintLeft_toLeftOf="@id/line1"
+                    app:layout_constraintRight_toRightOf="@id/line1"
+                    app:layout_constraintTop_toBottomOf="@id/line1">
+
+                </com.google.android.material.textview.MaterialTextView>
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/line2"
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/line"
+                    app:layout_constraintLeft_toLeftOf="@id/productTitle"
+                    app:layout_constraintRight_toRightOf="@id/productTitle"
+                    app:layout_constraintTop_toBottomOf="@id/productTitle">
+
+                </com.google.android.material.imageview.ShapeableImageView>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/descriptionText"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/raleway_bold"
+                    android:text="@string/description"
+                    android:textColor="@color/primary_text"
+                    android:textSize="20sp"
+                    app:layout_constraintLeft_toLeftOf="@id/line2"
+                    app:layout_constraintTop_toBottomOf="@id/line2">
+
+                </com.google.android.material.textview.MaterialTextView>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/descriptionContent"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/raleway_bold"
+                    android:textColor="@color/second_text_color"
+                    android:textSize="20sp"
+                    app:layout_constraintLeft_toLeftOf="@id/descriptionText"
+                    app:layout_constraintRight_toRightOf="@id/line2"
+                    app:layout_constraintTop_toBottomOf="@id/descriptionText">
+
+                </com.google.android.material.textview.MaterialTextView>
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/line3"
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/line"
+                    app:layout_constraintLeft_toLeftOf="@id/descriptionContent"
+                    app:layout_constraintRight_toRightOf="@id/descriptionContent"
+                    app:layout_constraintTop_toBottomOf="@id/descriptionContent">
+
+                </com.google.android.material.imageview.ShapeableImageView>
+
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/chooseSizeText"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/raleway_bold"
+                    android:text="@string/choose_size"
+                    android:textColor="@color/primary_text"
+                    android:textSize="20sp"
+                    app:layout_constraintLeft_toLeftOf="@id/line3"
+                    app:layout_constraintTop_toBottomOf="@id/line3">
+
+                </com.google.android.material.textview.MaterialTextView>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/sizeRecView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintLeft_toLeftOf="@id/chooseSizeText"
+                    app:layout_constraintTop_toBottomOf="@id/chooseSizeText">
+
+                </androidx.recyclerview.widget.RecyclerView>
+
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/chooseColorText"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="130dp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/raleway_bold"
+                    android:text="@string/color"
+                    android:textColor="@color/primary_text"
+                    android:textSize="20sp"
+                    app:layout_constraintLeft_toRightOf="@id/chooseSizeText"
+                    app:layout_constraintTop_toBottomOf="@id/line3">
+
+                </com.google.android.material.textview.MaterialTextView>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/colorRecView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintLeft_toLeftOf="@id/chooseColorText"
+                    app:layout_constraintTop_toBottomOf="@id/chooseColorText">
+
+                </androidx.recyclerview.widget.RecyclerView>
+
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/line4"
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="20dp"
+                    android:src="@drawable/line"
+                    app:layout_constraintLeft_toLeftOf="@id/sizeRecView"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/sizeRecView">
+
+                </com.google.android.material.imageview.ShapeableImageView>
+
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/countText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/raleway_bold"
+                    android:text="@string/count"
+                    android:textColor="@color/primary_text"
+                    android:textSize="20sp"
+                    app:layout_constraintLeft_toLeftOf="@id/line4"
+                    app:layout_constraintRight_toRightOf="@id/line4"
+                    app:layout_constraintTop_toBottomOf="@id/line4"
+
+
+                    ></com.google.android.material.textview.MaterialTextView>
+
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/decreasingBg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="100dp"
+                    android:src="@drawable/minusbg"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="@id/detailConstraint"
+                    app:layout_constraintTop_toBottomOf="@id/countText">
+
+                </com.google.android.material.imageview.ShapeableImageView>
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/decreasingIcon"
+                    android:layout_width="30dp"
+                    android:layout_height="10dp"
+                    android:layout_marginRight="40dp"
+                    android:src="@drawable/minus"
+                    app:layout_constraintBottom_toBottomOf="@id/decreasingBg"
+                    app:layout_constraintRight_toRightOf="@id/decreasingBg"
+                    app:layout_constraintTop_toTopOf="@id/decreasingBg">
+
+                </com.google.android.material.imageview.ShapeableImageView>
+
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/increasingBg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="100dp"
+                    android:src="@drawable/plusbg"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintRight_toRightOf="@id/detailConstraint"
+                    app:layout_constraintTop_toBottomOf="@id/countText">
+
+                </com.google.android.material.imageview.ShapeableImageView>
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/increasingIcon"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="40dp"
+                    android:src="@drawable/plus"
+                    app:layout_constraintBottom_toBottomOf="@id/increasingBg"
+                    app:layout_constraintLeft_toLeftOf="@id/increasingBg"
+                    app:layout_constraintTop_toTopOf="@id/increasingBg">
+
+                </com.google.android.material.imageview.ShapeableImageView>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="40dp"
+                    android:fontFamily="@font/raleway_bold"
+                    android:textColor="@color/primary_text"
+                    android:textSize="80sp"
+                    android:text="1"
+                    app:layout_constraintBottom_toBottomOf="@id/decreasingBg"
+                    app:layout_constraintLeft_toRightOf="@id/decreasingBg"
+                    app:layout_constraintRight_toLeftOf="@id/increasingBg"
+                    app:layout_constraintTop_toTopOf="@id/decreasingBg">
+
+                </com.google.android.material.textview.MaterialTextView>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/addOrRemoveCard"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginBottom="20dp"
+        android:backgroundTint="@color/primary_blue"
+        app:strokeColor="@color/primary_blue"
+        app:cardCornerRadius="42dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/addOrRemoveConstraint"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+     >
+
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/cartImg"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/unselectedcarticon"
+            app:layout_constraintRight_toLeftOf="@id/buttonName"
+            app:layout_constraintTop_toTopOf="@id/addOrRemoveConstraint"
+            app:layout_constraintBottom_toBottomOf="@id/addOrRemoveConstraint"
+            />
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/buttonName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/raleway_bold"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:layout_marginLeft="-30dp"
+            app:layout_constraintLeft_toLeftOf="@id/addOrRemoveConstraint"
+            app:layout_constraintRight_toRightOf="@id/addOrRemoveConstraint"
+            app:layout_constraintBottom_toBottomOf="@id/cartImg"
+            app:layout_constraintTop_toTopOf="@id/cartImg"
+            />
+
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/currency"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/raleway_bold"
+            android:textColor="@color/white"
+            app:layout_constraintLeft_toRightOf="@id/buttonName"
+            app:layout_constraintTop_toTopOf="@id/buttonName"
+            app:layout_constraintBottom_toBottomOf="@id/buttonName"
+            android:textSize="20sp" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/raleway_bold"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:maxLines="1"
+                android:maxWidth="100dp"
+                app:layout_constraintLeft_toRightOf="@id/currency"
+                app:layout_constraintBottom_toBottomOf="@id/currency"
+                app:layout_constraintTop_toTopOf="@id/currency" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+
+<com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/loading"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/loading"
+        app:lottie_renderMode="automatic">
+
+    </com.airbnb.lottie.LottieAnimationView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

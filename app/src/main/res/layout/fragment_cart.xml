@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_white"
+    tools:context=".presentation.fragments.CartFragment">
+
+
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/cartText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="60dp"
+        android:fontFamily="@font/raleway_bold"
+        android:text="@string/cart"
+        android:textColor="@color/primary_text"
+        android:textSize="31dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </com.google.android.material.textview.MaterialTextView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/productCountCard"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+
+        android:layout_marginRight="20dp"
+        android:backgroundTint="#00CCFF"
+        app:cardCornerRadius="100dp"
+        app:layout_constraintBottom_toBottomOf="@id/cartText"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/cartText">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/productCount"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="-10dp"
+            android:fontFamily="@font/raleway_bold"
+            android:gravity="center"
+            android:textColor="@color/primary_text"
+            android:textSize="28sp"
+
+            >
+
+        </com.google.android.material.textview.MaterialTextView>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/cartConstraintHandler"
+        android:layout_width="80dp"
+        android:layout_height="20dp"
+        android:layout_marginBottom="-15dp"
+        android:src="@drawable/cartline"
+        app:layout_constraintBottom_toTopOf="@id/cartConstraint"
+        app:layout_constraintLeft_toLeftOf="@id/cartConstraint"
+        app:layout_constraintRight_toRightOf="@id/cartConstraint">
+
+    </com.google.android.material.imageview.ShapeableImageView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cartConstraint"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="-40dp"
+        android:background="@drawable/cartbg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cartText"
+
+        >
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/cartRecView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="40dp"
+            android:orientation="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toTopOf="@id/paymentConstraint"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/cartConstraint">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/loading"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/loading"
+            app:lottie_renderMode="automatic">
+
+        </com.airbnb.lottie.LottieAnimationView>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/paymentConstraint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+           android:layout_marginBottom="50dp"
+            android:paddingBottom="10dp"
+            android:background="@drawable/paymentbg"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="@id/cartConstraint"
+            app:layout_constraintRight_toRightOf="@id/cartConstraint">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/deliveryAmountText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="40dp"
+                android:fontFamily="@font/raleway_bold"
+                android:text="@string/delivery_amount"
+                android:textColor="@color/primary_text"
+                android:textSize="16sp"
+                app:layout_constraintLeft_toLeftOf="@id/paymentConstraint"
+                app:layout_constraintTop_toTopOf="@id/paymentConstraint">
+
+            </com.google.android.material.textview.MaterialTextView>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/deliveryAmount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:fontFamily="@font/raleway_bold"
+                android:text="$25.00"
+                android:textColor="@color/primary_text"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@id/deliveryAmountText"
+                app:layout_constraintRight_toRightOf="@id/paymentConstraint">
+
+            </com.google.android.material.textview.MaterialTextView>
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/paymentLine"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+
+                android:src="@drawable/paymentline"
+                app:layout_constraintLeft_toLeftOf="@id/deliveryAmountText"
+                app:layout_constraintRight_toRightOf="@id/deliveryAmount"
+                app:layout_constraintTop_toBottomOf="@id/deliveryAmountText"
+                >
+
+            </com.google.android.material.imageview.ShapeableImageView>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/totalAmountText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:fontFamily="@font/raleway_bold"
+                android:text="@string/total_amount"
+                android:textColor="@color/primary_text"
+                android:textSize="18sp"
+                app:layout_constraintLeft_toLeftOf="@id/paymentConstraint"
+                app:layout_constraintTop_toBottomOf="@id/paymentLine">
+
+            </com.google.android.material.textview.MaterialTextView>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/totalAmount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:fontFamily="@font/raleway_bold"
+                android:text="$25.00"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:maxWidth="150dp"
+                android:textColor="@color/primary_text"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="@id/totalAmountText"
+                app:layout_constraintRight_toRightOf="@id/paymentConstraint">
+
+            </com.google.android.material.textview.MaterialTextView>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/makePayment"
+                android:layout_width="0dp"
+                android:layout_height="70dp"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="@color/primary_blue"
+                android:paddingRight="200dp"
+                android:text="@string/make_payment"
+                android:layout_marginHorizontal="10dp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="21sp"
+                app:cornerRadius="42dp"
+                app:layout_constraintLeft_toLeftOf="@id/paymentConstraint"
+                app:layout_constraintRight_toRightOf="@id/paymentConstraint"
+                app:layout_constraintTop_toBottomOf="@id/totalAmountText"
+                app:strokeColor="@color/black"
+                app:strokeWidth="1dp">
+
+            </com.google.android.material.button.MaterialButton>
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/nextBg"
+                android:layout_width="120dp"
+                android:layout_height="0dp"
+                android:layout_margin="10dp"
+                android:src="@drawable/nextbg"
+                android:layout_marginRight="10dp"
+                app:layout_constraintRight_toRightOf="@id/makePayment"
+                app:layout_constraintTop_toTopOf="@id/makePayment"
+                app:layout_constraintBottom_toBottomOf="@id/makePayment"
+
+                >
+
+
+            </com.google.android.material.imageview.ShapeableImageView>
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/next1"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/next1"
+                app:layout_constraintRight_toLeftOf="@id/next2"
+                 app:layout_constraintLeft_toLeftOf="@id/nextBg"
+                android:layout_marginLeft="30dp"
+                app:layout_constraintTop_toTopOf="@id/nextBg"
+                app:layout_constraintBottom_toBottomOf="@id/nextBg"
+
+                >
+
+
+            </com.google.android.material.imageview.ShapeableImageView>
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/next2"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/next2"
+                app:layout_constraintLeft_toRightOf="@id/next1"
+app:layout_constraintRight_toLeftOf="@id/next3"
+                app:layout_constraintTop_toTopOf="@id/next1"
+                app:layout_constraintBottom_toBottomOf="@id/next1"
+
+                >
+
+
+            </com.google.android.material.imageview.ShapeableImageView>
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/next3"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/next3"
+                android:layout_marginRight="20dp"
+                app:layout_constraintLeft_toRightOf="@id/next2"
+                app:layout_constraintRight_toRightOf="@id/nextBg"
+                app:layout_constraintTop_toTopOf="@id/next2"
+                app:layout_constraintBottom_toBottomOf="@id/next2"
+
+                >
+
+
+            </com.google.android.material.imageview.ShapeableImageView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+

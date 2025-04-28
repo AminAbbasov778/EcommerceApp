@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="products"
+            type="com.example.ecommerceapp.data.model.products.ProductModelItem" />
+    </data>
+<androidx.cardview.widget.CardView
+    android:id="@+id/productCardView"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="20dp"
+    android:layout_marginBottom="10dp"
+    app:cardCornerRadius="15dp"
+
+    >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+       >
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/productImgCard"
+            android:layout_width="198dp"
+            android:layout_height="210dp"
+            android:backgroundTint="@color/white"
+            app:strokeColor="@color/white"
+            app:cardCornerRadius="15dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+
+            >
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/productImg"
+                load_url="@{products.image}"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="20dp"
+                android:scaleType="fitXY"
+
+                >
+
+            </com.google.android.material.imageview.ShapeableImageView>
+        </com.google.android.material.card.MaterialCardView>
+
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/emptyFavoriteIcon"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/emptyfavorite"
+            app:layout_constraintRight_toRightOf="@id/rating"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </com.google.android.material.imageview.ShapeableImageView>
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/fullFavoriteIcon"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_marginTop="10dp"
+            android:visibility="gone"
+            android:src="@drawable/fullfavorite"
+            app:layout_constraintRight_toRightOf="@id/rating"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </com.google.android.material.imageview.ShapeableImageView>
+
+
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/raleway_bold"
+            android:maxLines="1"
+            android:text="@{products.title}"
+            android:textColor="@color/primary_text"
+            android:textSize="14sp"
+            android:layout_marginLeft="13dp"
+            android:layout_marginRight="10dp"
+            app:layout_constraintLeft_toLeftOf="@id/productImgCard"
+            app:layout_constraintRight_toRightOf="@id/productImgCard"
+            app:layout_constraintTop_toBottomOf="@id/productImgCard">
+
+        </com.google.android.material.textview.MaterialTextView>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/raleway_bold"
+            android:text="@{products.category}"
+            android:textColor="@color/second_text_color"
+            android:textSize="12sp"
+            app:layout_constraintLeft_toLeftOf="@id/title"
+            app:layout_constraintTop_toBottomOf="@id/title"
+
+            >
+
+        </com.google.android.material.textview.MaterialTextView>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/raleway_bold"
+            android:text="@{'$'+ String.valueOf(products.price)}"
+            android:textColor="@color/second_text_color"
+            android:textSize="14sp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintLeft_toLeftOf="@id/category"
+            app:layout_constraintTop_toBottomOf="@id/category"
+            app:layout_constraintBottom_toBottomOf="parent"
+
+            >
+
+        </com.google.android.material.textview.MaterialTextView>
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/starIcon"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:src="@drawable/star"
+            android:layout_marginRight="3dp"
+            app:layout_constraintBottom_toBottomOf="@id/price"
+            app:layout_constraintRight_toLeftOf="@id/rating"
+            app:layout_constraintTop_toTopOf="@id/price">
+
+        </com.google.android.material.imageview.ShapeableImageView>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/rating"
+            rounded_number="@{products.rating.rate}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="5dp"
+            android:fontFamily="@font/raleway_bold"
+            android:textColor="@color/primary_text"
+            android:textSize="15sp"
+            app:layout_constraintRight_toRightOf="@id/productImgCard"
+            app:layout_constraintBottom_toBottomOf="@id/starIcon"
+            app:layout_constraintTop_toTopOf="@id/starIcon">
+
+        </com.google.android.material.textview.MaterialTextView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
+
+</layout>

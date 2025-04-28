@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_white"
+    tools:context=".presentation.fragments.HomeFragment">
+
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/shopText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="56dp"
+        android:fontFamily="@font/raleway_bold"
+        android:text="Shop"
+        android:textColor="@color/primary_text"
+        android:textSize="28sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </com.google.android.material.textview.MaterialTextView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/searchCardView"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginHorizontal="20dp"
+        android:backgroundTint="@color/background_gray"
+        app:cardCornerRadius="18dp"
+        app:layout_constraintBottom_toBottomOf="@id/shopText"
+        app:layout_constraintLeft_toRightOf="@id/shopText"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/shopText"
+        app:strokeWidth="1dp"
+
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/searchEdittext"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/transparent"
+            android:gravity="center_vertical"
+            android:cursorVisible="false"
+            android:clickable="true"
+            android:focusable="false"
+            android:inputType="none"
+            android:hint="Search"
+            android:paddingLeft="20dp"
+            android:paddingRight="40dp"
+            android:textColor="@color/primary_text"
+            android:textColorHint="@color/second_hint_text"
+            android:textSize="16sp">
+
+        </com.google.android.material.textfield.TextInputEditText>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/cameraIcon"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginRight="10dp"
+        android:src="@drawable/cameralogo"
+        app:layout_constraintBottom_toBottomOf="@id/searchCardView"
+        app:layout_constraintRight_toRightOf="@id/searchCardView"
+        app:layout_constraintTop_toTopOf="@id/searchCardView">
+
+    </com.google.android.material.imageview.ShapeableImageView>
+
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scrollbars="vertical"
+        android:layout_marginTop="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="@id/shopText"
+        app:layout_constraintRight_toRightOf="@id/searchCardView"
+        app:layout_constraintTop_toBottomOf="@id/shopText">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/mainConstraint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/opportunityViewPager"
+                android:layout_width="0dp"
+                android:layout_height="170dp"
+                android:layout_marginTop="10dp"
+                app:layout_constraintLeft_toLeftOf="@id/mainConstraint"
+                app:layout_constraintRight_toRightOf="@id/mainConstraint"
+                app:layout_constraintTop_toTopOf="@id/mainConstraint"
+
+                >
+
+            </androidx.viewpager2.widget.ViewPager2>
+
+            <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
+                android:id="@+id/dotsIndicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="10dp"
+                app:dotsSize="15dp"
+                app:dotsColor="#A0A3BD"
+                app:dotsSpacing="5dp"
+                app:layout_constraintLeft_toLeftOf="@id/opportunityViewPager"
+                app:layout_constraintRight_toRightOf="@id/opportunityViewPager"
+                app:layout_constraintTop_toBottomOf="@id/opportunityViewPager"
+                app:selectedDotColor="@color/primary_blue">
+
+            </com.tbuonomo.viewpagerdotsindicator.DotsIndicator>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/categoryText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/raleway_bold"
+                android:text="@string/categories"
+                android:textColor="@color/primary_text"
+                android:textSize="21sp"
+                app:layout_constraintLeft_toLeftOf="@id/opportunityViewPager"
+                app:layout_constraintTop_toBottomOf="@id/dotsIndicator">
+
+            </com.google.android.material.textview.MaterialTextView>
+
+
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/seeAllText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="16dp"
+                android:fontFamily="@font/raleway_bold"
+                android:text="@string/see_all"
+                android:textColor="@color/primary_text"
+                android:textSize="21sp"
+                app:layout_constraintRight_toLeftOf="@id/forwardIconCard"
+                app:layout_constraintTop_toBottomOf="@id/dotsIndicator">
+
+            </com.google.android.material.textview.MaterialTextView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/forwardIconCard"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:backgroundTint="@color/primary_blue"
+                app:cardCornerRadius="100dp"
+                app:layout_constraintBottom_toBottomOf="@id/seeAllText"
+                app:layout_constraintRight_toRightOf="@id/opportunityViewPager"
+                app:layout_constraintTop_toTopOf="@id/seeAllText">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/forwardIcon"
+                    android:layout_width="28dp"
+                    android:layout_height="18dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/baseline_arrow_forward_24" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/categoryLoading"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:visibility="gone"
+                app:layout_constraintTop_toTopOf="@id/categoryRecView"
+                app:layout_constraintLeft_toLeftOf="@id/categoryRecView"
+                app:layout_constraintRight_toRightOf="@id/categoryRecView"
+                app:layout_constraintBottom_toBottomOf="@id/categoryRecView"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/loading"
+                app:lottie_renderMode="automatic">
+
+            </com.airbnb.lottie.LottieAnimationView>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/categoryRecView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintLeft_toLeftOf="@id/categoryText"
+                app:layout_constraintRight_toRightOf="@id/forwardIconCard"
+                app:layout_constraintTop_toBottomOf="@id/categoryText"
+                >
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/justForYouText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:fontFamily="@font/raleway_bold"
+                android:text="@string/just_for_you"
+                android:textColor="@color/primary_text"
+                android:textSize="22sp"
+                app:layout_constraintLeft_toLeftOf="@id/categoryRecView"
+                app:layout_constraintTop_toBottomOf="@id/categoryRecView"
+
+                >
+
+            </com.google.android.material.textview.MaterialTextView>
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/starImage"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginLeft="3dp"
+                android:src="@drawable/staricon"
+                app:layout_constraintLeft_toRightOf="@id/justForYouText"
+                app:layout_constraintTop_toTopOf="@id/justForYouText">
+
+            </com.google.android.material.imageview.ShapeableImageView>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/productsRecView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:layout_constraintBottom_toBottomOf="@id/mainConstraint"
+                app:layout_constraintLeft_toLeftOf="@id/justForYouText"
+                app:layout_constraintRight_toRightOf="@id/forwardIconCard"
+                app:layout_constraintTop_toBottomOf="@id/justForYouText"
+                app:spanCount="2">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/productsLoading"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@id/productsRecView"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/loading"
+                app:lottie_renderMode="automatic">
+
+            </com.airbnb.lottie.LottieAnimationView>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

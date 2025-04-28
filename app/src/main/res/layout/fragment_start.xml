@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".presentation.fragments.StartFragment">
+
+    <ImageView
+        android:id="@+id/logoBack"
+        android:layout_width="154dp"
+        android:layout_height="154dp"
+        android:layout_marginBottom="90dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:srcCompat="@drawable/starthlogoback1" />
+
+    <ImageView
+        android:id="@+id/logohead"
+        android:layout_width="28.34dp"
+        android:layout_height="14.16dp"
+        app:layout_constraintBottom_toTopOf="@id/logoBack1"
+        app:layout_constraintLeft_toLeftOf="@id/logoBack1"
+        app:layout_constraintRight_toRightOf="@id/logoSide"
+        app:srcCompat="@drawable/backheadlogostart" />
+
+    <ImageView
+        android:id="@+id/logoBack1"
+        android:layout_width="74.49dp"
+        android:layout_height="72.94dp"
+        android:layout_marginRight="9dp"
+        android:layout_marginBottom="3dp"
+        app:layout_constraintTop_toTopOf="@id/logoBack"
+        app:layout_constraintLeft_toLeftOf="@id/logoBack"
+        app:layout_constraintRight_toRightOf="@id/logoBack"
+        app:layout_constraintBottom_toBottomOf="@id/logoBack"
+        app:srcCompat="@drawable/startlogoback2" />
+
+    <ImageView
+        android:id="@+id/logoBack2"
+        android:layout_width="62.26dp"
+        android:layout_height="67.41dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintLeft_toLeftOf="@id/logoBack1"
+        app:layout_constraintRight_toRightOf="@id/logoBack1"
+        app:layout_constraintTop_toTopOf="@id/logoBack1"
+        app:srcCompat="@drawable/logoback4start" />
+
+    <ImageView
+        android:id="@+id/logoSide"
+        android:layout_width="69.56dp"
+        android:layout_height="71.38dp"
+        android:layout_marginRight="-7dp"
+        app:layout_editor_absoluteX="158.84dp"
+        app:layout_constraintBottom_toBottomOf="@id/logoBack2"
+        app:layout_constraintRight_toRightOf="@id/logoBack2"
+        app:srcCompat="@drawable/logoback3start" />
+
+    <TextView
+        android:id="@+id/myAppName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/raleway_bold"
+        android:text="Shoppe"
+        android:textColor="@color/primary_text"
+        android:textSize="52sp"
+        android:layout_marginTop="15dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/logoBack" />
+
+    <TextView
+        android:id="@+id/introductionText"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="17dp"
+        android:fontFamily="@font/nunito_sans_light"
+        android:text="Effortless eCommerce app design for your mobile store"
+        android:textColor="@color/primary_text"
+        android:textSize="20sp"
+        android:textAlignment="center"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/myAppName" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/getStartedButton"
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        android:backgroundTint="@color/primary_blue"
+        app:cornerRadius="16dp"
+        android:layout_marginHorizontal="20dp"
+        android:text="Let's get started"
+        android:textColor="@color/button_text_white"
+        android:textSize="22sp"
+        android:layout_marginTop="105dp"
+        android:fontFamily="@font/nunito_sans_light"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/haveAccountText"
+        app:layout_constraintTop_toBottomOf="@id/introductionText" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/haveAccountText"
+        android:layout_width="wrap_content"
+        android:layout_height="26dp"
+        android:text="I already have an account"
+        android:fontFamily="@font/nunito_sans_light"
+        android:textColor="@color/primary_text"
+        android:layout_marginTop="10dp"
+        android:textSize="15sp"
+        app:layout_constraintTop_toBottomOf="@id/getStartedButton"
+        android:layout_marginBottom="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginLeft="110dp"
+        app:layout_constraintLeft_toLeftOf="@id/getStartedButton" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/forwardIconCard"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        app:cardCornerRadius="100dp"
+        android:layout_marginLeft="16dp"
+        android:backgroundTint="@color/primary_blue"
+        app:layout_constraintLeft_toRightOf="@id/haveAccountText"
+        app:layout_constraintBottom_toBottomOf="@id/haveAccountText">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/forwardIcon"
+            android:layout_width="28dp"
+            android:layout_height="18dp"
+            android:layout_gravity="center"
+            android:src="@drawable/baseline_arrow_forward_24" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

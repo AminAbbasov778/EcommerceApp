@@ -1,0 +1,115 @@
+<resources>
+    <string name="app_name">EcommerceApp</string>
+    <!-- TODO: Remove or change this placeholder text -->
+
+
+    <string name="empty_fields_message">please fill all required fields</string>
+    <string name="please_fill_at_least_one_filed">please fill at least one field</string>
+    <string name="invalid_email_message">Invalid email</string>
+    <string name="short_password_message">Password must be at least 8 character</string>
+    <string name="successful_validation">Successful validation</string>
+    <string name="failure_validation">Failure validation</string>
+    <string name="successful_signup">Signup completed successfully</string>
+    <string name="failure_signup">Signup failed. Please try again</string>
+    <string name="successful_login">Login is Successful</string>
+    <string name="verification_email_sent">Verification email is sent. Please check email</string>
+    <string name="verification_email_failed">failed to send Verification email </string>
+    <string name="failure_login">Login failed. Please try again</string>
+    <string name="no_digit">Password must contain at least one digit</string>
+    <string name="no_lower_case">Password must contain at least one lowercase letter</string>
+    <string name="no_upper_case">Password must contain at least one uppercase letter</string>
+    <string name="no_special_character">Password must contain at least one special character (e.g., @, #, $, %, +).</string>
+    <string name="adding_product_to_cart_successful">Product is successfully added to cart</string>
+    <string name="adding_product_to_cart_failure">Product failed to add cart</string>
+    <string name="unknown_error">Unknown error</string>
+    <string name="wrong_something">Something is wrong. Please, try again</string>
+    <string name="failure_email">failed to get email</string>
+    <string name="failure_username">failed to get username</string>
+    <string name="successful_updating_profile">Profile is successfully updated</string>
+    <string name="failure_updating_profile">Profile update failed, please try again later</string>
+
+    <string name="email_not_verified">Email is not verified. please,verify email</string>
+    <string name="removing_product_to_cart_successful">Product is successfully removed from cart</string>
+    <string name="removing_product_to_cart_failure">Product failed to remove from cart</string>
+    <string name="process_is_failure">Process is failure to fetch products</string>
+    <string name="successful_logout">Logout is successful</string>
+    <string name="failure_logout">Logout failed</string>
+    <string name="unexpected_result_state">Unexpected result state</string>
+    <string name="failure_categories">Failure categories response</string>
+    <string name="successful_to_update_size">Size is successfully updated</string>
+    <string name="successful_to_update_color">Color is successfully updated</string>
+    <string name="successful_to_update_count">Count is successfully updated</string>
+    <string name="successful_to_update_email">Email is successfully updated</string>
+    <string name="successful_to_update_username">Username is successfully updated</string>
+    <string name="successful_to_save_username">Username is successfully saved</string>
+    <string name="successful_to_update_password">Password is successfully updated</string>
+    <string name="failure_to_update_color">Process failed to update color</string>
+    <string name="failure_to_update_password">Process failed to update password</string>
+    <string name="failure_to_save_username">Process failed to save username</string>
+    <string name="failure_to_update_email">Process failed to update email</string>
+    <string name="failure_to_update_username">Process failed to update username</string>
+    <string name="failure_to_update_size">Process failed to update size</string>
+    <string name="failure_to_update_count">Process failed to update count</string>
+    <string name="empty_color_or_size">Color and size can not be empty</string>
+    <string name="cart">Cart</string>
+    <string name="delivery_amount">Delivery Amount</string>
+    <string name="total_amount">Delivery Amount</string>
+    <string name="make_payment">Make Payment</string>
+    <string name="sold_by">Sold by:</string>
+    <string name="description">Description</string>
+    <string name="choose_size">Choose Size</string>
+    <string name="color">Color</string>
+    <string name="count">Count</string>
+    <string name="shop">Shop</string>
+    <string name="categories">Categories</string>
+    <string name="see_all">See All</string>
+    <string name="just_for_you">Just For You</string>
+    <string name="login">Login</string>
+    <string name="good_to_see_you_back">Good to see you back!</string>
+    <string name="next">Next</string>
+    <string name="cancel">Cancel</string>
+    <string name="my_activity">My Activity</string>
+    <string name="hello">Hello,</string>
+    <string name="recently_viewed">Recently viewed</string>
+    <string name="my_orders">My Orders</string>
+    <string name="to_pay">To Pay</string>
+    <string name="to_recieve">To Recieve</string>
+    <string name="to_review">To Review</string>
+    <string name="shoppe">Shoppe</string>
+    <string name="get_started">Let s get started</string>
+    <string name="create_account">Create Account</string>
+    <string name="done">Done</string>
+    <string name="size">Size </string>
+    <string name="profile">Profile</string>
+    <string name="payment_methods">Payment methods</string>
+    <string name="shipping_address">Shipping Address</string>
+    <string name="language">Language</string>
+    <string name="about_slada">About Slada</string>
+    <string name="english">English</string>
+    <string name="process_is_successfully_added_to_favorites">Product is successfully added to favorites</string>
+    <string name="process_is_successfully_remove_from_favorites">Product is successfully removed from favorites</string>
+    <string name="process_failed_to_added_to_favorites">Product failed to favorites</string>
+    <string name="process_failed_to_remove_from_favorites">Product failed to remove from favorites</string>
+    <string name="i_already_have_an_account">I already have an account</string>
+    <string name="description_app">Effortless eCommerce app design for your mobile store</string>
+    <string name="your_voucher_will_expire">Your voucher will expire in 3 days</string>
+    <string name="voucher_description">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt</string>
+    <string name="favorites">Favorites</string>
+    <string name="settings">Settings</string>
+    <string name="your_profile">Your Profile</string>
+    <string name="personal">Personal</string>
+    <string name="account">Account</string>
+    <string name="logout">Log out</string>
+    <string name="username">Username</string>
+    <string name="email">Email</string>
+    <string name="new_password">New password</string>
+    <string name="current_password">Current password</string>
+    <string name="save_changes">Save Changes</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+</resources>
+
+
+

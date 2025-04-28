@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".presentation.fragments.EditProfileFragment">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/settingsText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="60dp"
+        android:fontFamily="@font/raleway_bold"
+        android:text="@string/settings"
+        android:textColor="@color/primary_text"
+        android:textSize="31sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+
+        >
+
+    </com.google.android.material.textview.MaterialTextView>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/yourProfileText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:fontFamily="@font/raleway_medium"
+        android:text="@string/your_profile"
+        android:textColor="@color/primary_text"
+        android:textSize="19sp"
+        app:layout_constraintLeft_toLeftOf="@id/settingsText"
+        app:layout_constraintTop_toBottomOf="@id/settingsText"
+
+        >
+
+    </com.google.android.material.textview.MaterialTextView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/profileImgCard"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="30dp"
+        app:cardCornerRadius="100dp"
+        app:layout_constraintLeft_toLeftOf="@id/yourProfileText"
+        app:layout_constraintTop_toBottomOf="@id/yourProfileText"
+        app:strokeColor="@color/white"
+        app:strokeWidth="7dp">
+
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/profileImg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:scaleType="fitXY"
+            android:src="@drawable/profile">
+
+        </com.google.android.material.imageview.ShapeableImageView>
+    </com.google.android.material.card.MaterialCardView>
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/editIconCard"
+        android:layout_width="43dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="-3dp"
+        android:backgroundTint="@color/primary_blue"
+        app:cardCornerRadius="100dp"
+        app:layout_constraintRight_toRightOf="@id/profileImgCard"
+        app:layout_constraintTop_toTopOf="@id/profileImgCard"
+        app:strokeColor="@color/white"
+        app:strokeWidth="3dp">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/editIcon"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="12dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/editicon"
+
+            >
+
+        </com.google.android.material.imageview.ShapeableImageView>
+
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/userNameCardView"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:backgroundTint="@color/blue_edittext"
+        app:cardCornerRadius="9dp"
+        app:layout_constraintLeft_toLeftOf="@id/profileImgCard"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/profileImgCard"
+        app:strokeColor="@color/blue_edittext">
+
+        <EditText
+            android:id="@+id/userNameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/transparent"
+            android:fontFamily="@font/raleway_medium"
+            android:hint="@string/username"
+            android:paddingLeft="20dp"
+            android:textColor="@color/black"
+            android:textSize="17sp">
+
+        </EditText>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/emailCardView"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="20dp"
+        android:backgroundTint="@color/blue_edittext"
+        app:cardCornerRadius="9dp"
+        app:layout_constraintLeft_toLeftOf="@id/userNameCardView"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/userNameCardView"
+        app:strokeColor="@color/blue_edittext">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/emailTextView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/transparent"
+            android:fontFamily="@font/raleway_medium"
+            android:gravity="center_vertical"
+            android:inputType="textEmailAddress"
+            android:paddingLeft="20dp"
+            android:textColor="@color/black"
+            android:textSize="17sp">
+
+        </com.google.android.material.textview.MaterialTextView>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/currentPasswordCardView"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="20dp"
+        android:backgroundTint="@color/blue_edittext"
+        app:cardCornerRadius="9dp"
+        app:layout_constraintLeft_toLeftOf="@id/emailCardView"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/emailCardView"
+        app:strokeColor="@color/blue_edittext">
+
+        <EditText
+            android:id="@+id/currentPasswordEditText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/transparent"
+            android:fontFamily="@font/raleway_medium"
+            android:inputType="textPassword"
+            android:hint="@string/current_password"
+            android:paddingLeft="20dp"
+            android:textColor="@color/black"
+            android:textSize="17sp">
+
+        </EditText>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/currentPasVisibleIcon"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginRight="10dp"
+        android:src="@drawable/visibleicon"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/currentPasswordCardView"
+        app:layout_constraintRight_toRightOf="@id/currentPasswordCardView"
+        app:layout_constraintTop_toTopOf="@id/currentPasswordCardView">
+
+    </com.google.android.material.imageview.ShapeableImageView>
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/currentPasInvisibleIcon"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginRight="10dp"
+        android:src="@drawable/invisibleicon"
+        app:layout_constraintBottom_toBottomOf="@id/currentPasswordCardView"
+        app:layout_constraintRight_toRightOf="@id/currentPasswordCardView"
+        app:layout_constraintTop_toTopOf="@id/currentPasswordCardView">
+
+    </com.google.android.material.imageview.ShapeableImageView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/newPasswordCardView"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="20dp"
+        android:backgroundTint="@color/blue_edittext"
+        app:cardCornerRadius="9dp"
+        app:layout_constraintLeft_toLeftOf="@id/currentPasswordCardView"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/currentPasswordCardView"
+        app:strokeColor="@color/blue_edittext">
+
+        <EditText
+            android:id="@+id/newPasswordEditText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/transparent"
+            android:fontFamily="@font/raleway_medium"
+            android:inputType="textPassword"
+            android:hint="@string/new_password"
+            android:paddingLeft="20dp"
+            android:textColor="@color/black"
+            android:textSize="17sp">
+
+        </EditText>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/newPasVisibleIcon"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginRight="10dp"
+        android:src="@drawable/visibleicon"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/newPasswordCardView"
+        app:layout_constraintRight_toRightOf="@id/newPasswordCardView"
+        app:layout_constraintTop_toTopOf="@id/newPasswordCardView">
+
+    </com.google.android.material.imageview.ShapeableImageView>
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/newPasInnvisibleIcon"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginRight="10dp"
+        android:src="@drawable/invisibleicon"
+        app:layout_constraintBottom_toBottomOf="@id/newPasswordCardView"
+        app:layout_constraintRight_toRightOf="@id/newPasswordCardView"
+        app:layout_constraintTop_toTopOf="@id/newPasswordCardView">
+
+    </com.google.android.material.imageview.ShapeableImageView>
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/saveChangesBtn"
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        android:layout_marginBottom="40dp"
+        android:backgroundTint="@color/primary_blue"
+        android:fontFamily="@font/nunito_sans_light"
+        android:text="@string/save_changes"
+        android:textColor="@color/white"
+        android:textSize="19sp"
+        app:cornerRadius="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="@id/newPasswordCardView"
+        app:layout_constraintRight_toRightOf="@id/newPasswordCardView"
+
+        >
+
+    </com.google.android.material.button.MaterialButton>
+
+      <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/loading"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/loading"
+        app:lottie_renderMode="automatic">
+
+    </com.airbnb.lottie.LottieAnimationView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

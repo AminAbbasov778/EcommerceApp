@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="white">#FFFFFF</color>
+    <color name="background_white">#F2F2F2</color>
+    <color name="black">#000000</color>
+    <color name="primary_blue">#004CFF</color>
+    <color name="primary_text">#202020</color>
+    <color name="background_gray">#F8F8F8</color>
+    <color name="hint_text">#D2D2D2</color>
+    <color name="second_hint_text">#C7C7C7</color>
+    <color name="second_text_color">#707070</color>
+    <color name="error_red">#f20707</color>
+    <color name="pale_red">#D97474</color>
+    <color name="detail_bg">#104FFFFF</color>
+    <color name="success_green">#018e3e</color>
+    <color name="transparent">#00000000</color>
+    <color name="button_text_white">#F3F3F3</color>
+    <color name="pale_black">#495057</color>
+    <color name="pale_blue">#E5EBFC</color>
+    <color name="button_pale_blue">#08E6FF</color>
+    <color name="blue">#00CCFF</color>
+    <color name="blue_edittext">#F1F4FE</color>
+</resources>

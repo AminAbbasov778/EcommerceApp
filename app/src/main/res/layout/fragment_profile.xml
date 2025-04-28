@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_white"
+    tools:context=".presentation.fragments.ProfileFragment">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/profileImgCard"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="56dp"
+        app:cardCornerRadius="100dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:strokeColor="@color/white"
+        app:strokeWidth="3dp">
+
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/profileImg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:scaleType="fitXY"
+            android:src="@drawable/profile">
+
+        </com.google.android.material.imageview.ShapeableImageView>
+    </com.google.android.material.card.MaterialCardView>
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/myActivity"
+        android:layout_width="130dp"
+        android:layout_height="49dp"
+        android:layout_marginLeft="20dp"
+        android:backgroundTint="@color/primary_blue"
+        android:fontFamily="@font/raleway"
+        android:text="@string/my_activity"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@id/profileImgCard"
+        app:layout_constraintLeft_toRightOf="@id/profileImgCard"
+        app:layout_constraintTop_toTopOf="@id/profileImgCard">
+
+    </com.google.android.material.button.MaterialButton>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/scanImgCard"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="34dp"
+        android:backgroundTint="@color/pale_blue"
+        app:cardCornerRadius="100dp"
+        app:layout_constraintBottom_toBottomOf="@id/myActivity"
+        app:layout_constraintLeft_toRightOf="@id/myActivity"
+        app:layout_constraintTop_toTopOf="@id/myActivity">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/scanImg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/scanimg">
+
+        </com.google.android.material.imageview.ShapeableImageView>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/moreImgCard"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="11dp"
+        android:backgroundTint="@color/pale_blue"
+        app:cardCornerRadius="100dp"
+        app:layout_constraintBottom_toBottomOf="@id/scanImgCard"
+        app:layout_constraintLeft_toRightOf="@id/scanImgCard"
+        app:layout_constraintTop_toTopOf="@id/scanImgCard">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/moreImg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="12dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/threelines">
+
+        </com.google.android.material.imageview.ShapeableImageView>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/settingsImgCard"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="11dp"
+        android:layout_marginRight="20dp"
+        android:backgroundTint="@color/pale_blue"
+        app:cardCornerRadius="100dp"
+        app:layout_constraintBottom_toBottomOf="@id/moreImgCard"
+        app:layout_constraintLeft_toRightOf="@id/moreImgCard"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/moreImgCard">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/settingsImg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="8dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/settings">
+
+        </com.google.android.material.imageview.ShapeableImageView>
+    </com.google.android.material.card.MaterialCardView>
+
+    <TextView
+        android:id="@+id/helloText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/raleway_bold"
+        android:textColor="@color/primary_text"
+        android:textSize="31sp"
+        app:layout_constraintLeft_toLeftOf="@id/profileImgCard"
+        app:layout_constraintTop_toBottomOf="@id/profileImgCard">
+
+    </TextView>
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/voucherImgCard"
+        android:layout_width="85dp"
+        android:layout_height="85dp"
+        android:layout_marginTop="10dp"
+        app:cardCornerRadius="100dp"
+        app:layout_constraintLeft_toLeftOf="@id/helloText"
+        app:layout_constraintTop_toBottomOf="@id/helloText"
+        app:strokeColor="@color/pale_red"
+        app:strokeWidth="5dp">
+
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/voucherImg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_margin="20dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/bag">
+
+        </com.google.android.material.imageview.ShapeableImageView>
+
+    </com.google.android.material.card.MaterialCardView>
+
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/expireDateOfVoucherText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:fontFamily="@font/raleway_bold"
+        android:text="@string/your_voucher_will_expire"
+        android:textColor="@color/primary_text"
+        android:textSize="16sp"
+        app:layout_constraintLeft_toRightOf="@id/voucherImgCard"
+        app:layout_constraintTop_toTopOf="@id/voucherImgCard">
+
+    </com.google.android.material.textview.MaterialTextView>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/describtionText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nunito_sans"
+        android:text="@string/voucher_description"
+        android:textColor="@color/primary_text"
+        android:textSize="16sp"
+        app:layout_constraintLeft_toLeftOf="@id/expireDateOfVoucherText"
+        app:layout_constraintRight_toRightOf="@id/settingsImgCard"
+        app:layout_constraintTop_toBottomOf="@id/expireDateOfVoucherText">
+
+    </com.google.android.material.textview.MaterialTextView>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/recentlyViewedText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/raleway_bold"
+        android:text="@string/recently_viewed"
+        android:textColor="@color/primary_text"
+        android:textSize="25sp"
+        app:layout_constraintLeft_toLeftOf="@id/voucherImgCard"
+        app:layout_constraintTop_toBottomOf="@id/voucherImgCard">
+
+    </com.google.android.material.textview.MaterialTextView>
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/recentViewedImgCard"
+        android:layout_width="85dp"
+        android:layout_height="85dp"
+        android:layout_marginTop="10dp"
+        app:cardCornerRadius="100dp"
+        app:layout_constraintLeft_toLeftOf="@id/recentlyViewedText"
+        app:layout_constraintTop_toBottomOf="@id/recentlyViewedText"
+        app:strokeColor="@color/white"
+        app:strokeWidth="5dp">
+
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/recentViewedImg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:scaleType="fitXY"
+            android:src="@drawable/recently_viewed">
+
+        </com.google.android.material.imageview.ShapeableImageView>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/myOrdersText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/raleway_bold"
+        android:text="@string/my_orders"
+        android:textColor="@color/primary_text"
+        android:textSize="25sp"
+        app:layout_constraintLeft_toLeftOf="@id/recentViewedImgCard"
+        app:layout_constraintTop_toBottomOf="@id/recentViewedImgCard">
+
+    </com.google.android.material.textview.MaterialTextView>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/toPay"
+        android:layout_width="120dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="@color/pale_blue"
+        android:fontFamily="@font/raleway"
+        android:text="@string/to_pay"
+        android:textColor="@color/primary_blue"
+        android:textSize="18sp"
+        app:layout_constraintLeft_toLeftOf="@id/myOrdersText"
+        app:layout_constraintTop_toBottomOf="@id/myOrdersText"
+
+        >
+
+    </com.google.android.material.button.MaterialButton>
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/toRecieve"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginLeft="10dp"
+        android:backgroundTint="@color/pale_blue"
+        android:fontFamily="@font/raleway"
+        android:text="@string/to_recieve"
+        android:textColor="@color/primary_blue"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@id/toPay"
+        app:layout_constraintLeft_toRightOf="@id/toPay"
+        app:layout_constraintTop_toTopOf="@id/toPay"
+
+        >
+
+    </com.google.android.material.button.MaterialButton>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/toReview"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginLeft="10dp"
+        android:backgroundTint="@color/pale_blue"
+        android:fontFamily="@font/raleway"
+        android:text="@string/to_review"
+        android:textColor="@color/primary_blue"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@id/toRecieve"
+        app:layout_constraintLeft_toRightOf="@id/toRecieve"
+        app:layout_constraintTop_toTopOf="@id/toRecieve"
+
+        >
+
+    </com.google.android.material.button.MaterialButton>
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/blueBubble"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="-100dp"
+        android:rotation="180"
+        android:src="@drawable/bluebubblessignup"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+
+        >
+
+    </com.google.android.material.imageview.ShapeableImageView>
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/whiteBubble"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="-50dp"
+        android:src="@drawable/bigwhitebubble"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+
+        >
+
+    </com.google.android.material.imageview.ShapeableImageView>
+
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/loading"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/loading"
+        app:lottie_renderMode="automatic">
+
+    </com.airbnb.lottie.LottieAnimationView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
