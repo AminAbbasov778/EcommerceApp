@@ -5,8 +5,9 @@ import com.example.ecommerceapp.data.local.entity.ColorEntity
 import com.example.ecommerceapp.data.local.entity.RatingEntity
 import com.example.ecommerceapp.data.local.entity.SizeEntity
 import com.example.ecommerceapp.data.model.products.ProductModelItem
+import javax.inject.Inject
 
-class ConvertProductModelItemToCartEntityUseCase {
+class ConvertProductModelItemToCartEntityUseCase  @Inject constructor() {
 
     operator fun invoke(product: ProductModelItem,color:String,colorPosition : Int,size : String,sizePosition : Int,quantity : Int,price : Double): CartEntity {
         return CartEntity(

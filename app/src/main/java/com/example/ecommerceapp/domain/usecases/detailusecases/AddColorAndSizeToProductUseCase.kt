@@ -2,8 +2,9 @@ package com.example.ecommerceapp.domain.usecases.detailusecases
 
 import com.example.ecommerceapp.data.model.products.ProductModelItem
 import com.example.ecommerceapp.domain.interfaces.DetailRepository
+import javax.inject.Inject
 
-class AddColorAndSizeToProductUseCase(val detailRepository: DetailRepository) {
+class AddColorAndSizeToProductUseCase  @Inject constructor(val detailRepository: DetailRepository) {
 
     operator fun invoke(product: Result<ProductModelItem>) : Result<ProductModelItem>{
         val sizes = detailRepository.getSize()

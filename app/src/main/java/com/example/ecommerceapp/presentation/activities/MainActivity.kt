@@ -58,6 +58,8 @@ class MainActivity : AppCompatActivity() {
                 R.id.profileFragment -> binding.bottomNavigationCard.show()
                 R.id.settingsFragment -> binding.bottomNavigationCard.setGone()
                 R.id.cartFragment -> binding.bottomNavigationCard.show()
+                R.id.searchFragment -> binding.bottomNavigationCard.setGone()
+                R.id.searchResultFragment -> binding.bottomNavigationCard.setGone()
 
 
             }

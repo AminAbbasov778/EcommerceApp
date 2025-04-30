@@ -1,8 +1,9 @@
 package com.example.ecommerceapp.domain.usecases.commonusecases
 
 import com.example.ecommerceapp.domain.domainstates.ValidationState
+import javax.inject.Inject
 
-class ShortPasswordValidationUseCase {
+class ShortPasswordValidationUseCase  @Inject constructor() {
 
     operator fun invoke(password: String): ValidationState {
         if (password.length >= 8) {

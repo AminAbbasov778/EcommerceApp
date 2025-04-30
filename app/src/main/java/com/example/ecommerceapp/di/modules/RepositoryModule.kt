@@ -16,7 +16,8 @@ import com.example.ecommerceapp.data.repositories.CategoryRepositoryImpl
 import com.example.ecommerceapp.data.repositories.DetailRepositoryImpl
 import com.example.ecommerceapp.data.repositories.FirebaseAuthRepositoryImpl
 import com.example.ecommerceapp.data.repositories.ProductRepositoryImpl
-import com.example.ecommerceapp.data.repositories.UserPreferencesImpl
+import com.example.ecommerceapp.data.repositories.SettingsRepositoryImpl
+import com.example.ecommerceapp.data.repositories.UserPreferencesRepositoryImpl
 import com.example.ecommerceapp.data.repositories.UserRepositoryImpl
 import com.example.ecommerceapp.domain.interfaces.BannerRepository
 import com.example.ecommerceapp.domain.interfaces.CameraRepository
@@ -25,7 +26,8 @@ import com.example.ecommerceapp.domain.interfaces.CategoryRepository
 import com.example.ecommerceapp.domain.interfaces.DetailRepository
 import com.example.ecommerceapp.domain.interfaces.FirebaseAuthRepository
 import com.example.ecommerceapp.domain.interfaces.ProductRepository
-import com.example.ecommerceapp.domain.interfaces.UserPreferences
+import com.example.ecommerceapp.domain.interfaces.SettingsRepository
+import com.example.ecommerceapp.domain.interfaces.UserPreferencesRepository
 import com.example.ecommerceapp.domain.interfaces.UserRepository
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -97,8 +99,8 @@ object RepositoryModule {
 
     @Provides
     @Singleton
-    fun provideUserPreferences(sharedPreferences: SharedPreferences): UserPreferences =
-        UserPreferencesImpl(sharedPreferences)
+    fun provideUserPreferencesRepository(sharedPreferences: SharedPreferences): UserPreferencesRepository =
+        UserPreferencesRepositoryImpl(sharedPreferences)
 
 
     @Provides
@@ -106,7 +108,9 @@ object RepositoryModule {
     fun provideCameraRepository(@ApplicationContext context: Context): CameraRepository =
         CameraRepositoryImpl(context)
 
-
+    @Provides
+    @Singleton
+    fun provideSettingsRepository():SettingsRepository  = SettingsRepositoryImpl()
 
 
 }

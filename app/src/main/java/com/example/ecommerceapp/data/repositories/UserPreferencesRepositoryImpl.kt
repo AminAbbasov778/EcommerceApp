@@ -1,10 +1,10 @@
 package com.example.ecommerceapp.data.repositories
 
 import android.content.SharedPreferences
-import com.example.ecommerceapp.domain.interfaces.UserPreferences
+import com.example.ecommerceapp.domain.interfaces.UserPreferencesRepository
 import javax.inject.Inject
 
-class UserPreferencesImpl @Inject constructor(val sharedPreferences: SharedPreferences) : UserPreferences {
+class UserPreferencesRepositoryImpl @Inject constructor(val sharedPreferences: SharedPreferences) : UserPreferencesRepository {
     override fun getUsername(): Result<String?>  {
      return  try {
           val username =  sharedPreferences.getString("username",null)

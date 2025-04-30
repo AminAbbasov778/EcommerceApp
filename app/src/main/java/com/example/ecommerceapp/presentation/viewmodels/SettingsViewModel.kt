@@ -5,6 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.ecommerceapp.R
+import com.example.ecommerceapp.domain.usecases.settingsusecases.GetAccountSettingsItemsUseCase
+import com.example.ecommerceapp.domain.usecases.settingsusecases.GetPersonalSettingsItemsUseCase
 import com.example.ecommerceapp.domain.usecases.settingsusecases.LogoutUseCase
 import com.example.ecommerceapp.presentation.uimodels.SettingsModel
 import com.example.ecommerceapp.presentation.uistates.UiState
@@ -13,19 +15,20 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class SettingsViewModel @Inject constructor(val logoutUseCase: LogoutUseCase) : ViewModel() {
+class SettingsViewModel @Inject constructor(val logoutUseCase: LogoutUseCase,val getPersonalSettingsItemsUseCase: GetPersonalSettingsItemsUseCase,val getAccountSettingsItemsUseCase: GetAccountSettingsItemsUseCase) : ViewModel() {
 
     private var _logout = MutableLiveData<UiState<Int>>()
     val logout: LiveData<UiState<Int>> get() = _logout
 
-    private var _personalSettingsItem = MutableLiveData<ArrayList<Int>>()
-    val personalSettingsItem: LiveData<ArrayList<Int>> get() = _personalSettingsItem
+    private var _personalSettingsItem = MutableLiveData<List<Int>>()
+    val personalSettingsItem: LiveData<List<Int>> get() = _personalSettingsItem
 
-    private var _accountSettingsItem = MutableLiveData<ArrayList<SettingsModel>>()
-    val accountSettingsItem: LiveData<ArrayList<SettingsModel>> get() = _accountSettingsItem
+    private var _accountSettingsItem = MutableLiveData<List<SettingsModel>>()
+    val accountSettingsItem: LiveData<List<SettingsModel>> get() = _accountSettingsItem
 
     init {
-        getSettingsItem()
+        getPersonalSettingsItem()
+        getAccountSettingsItems()
     }
 
     fun logout() {
@@ -37,18 +40,12 @@ class SettingsViewModel @Inject constructor(val logoutUseCase: LogoutUseCase) : 
         }
     }
 
-    fun getSettingsItem() {
-        _personalSettingsItem.value = arrayListOf<Int>(
-            R.string.profile,
-            R.string.shipping_address,
-            R.string.payment_methods
-        )
-        _accountSettingsItem.value = arrayListOf<SettingsModel>(
-            SettingsModel(R.string.language, R.string.english),
-            SettingsModel(R.string.about_slada, null)
-        )
+    fun getPersonalSettingsItem() {
+        _personalSettingsItem.value = getPersonalSettingsItemsUseCase()
 
-
+    }
+    fun getAccountSettingsItems(){
+        _accountSettingsItem.value = getAccountSettingsItemsUseCase()
     }
 
 

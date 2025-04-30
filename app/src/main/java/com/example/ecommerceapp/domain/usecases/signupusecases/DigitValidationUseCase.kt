@@ -1,8 +1,9 @@
 package com.example.ecommerceapp.domain.usecases.signupusecases
 
 import com.example.ecommerceapp.domain.domainstates.ValidationState
+import javax.inject.Inject
 
-class DigitValidationUseCase {
+class DigitValidationUseCase  @Inject constructor(){
 
     operator fun invoke(password : String): ValidationState{
         var regex = ".*\\d.*"

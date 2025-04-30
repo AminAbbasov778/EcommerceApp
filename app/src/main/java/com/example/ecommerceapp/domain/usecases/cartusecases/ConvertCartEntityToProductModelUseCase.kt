@@ -3,8 +3,9 @@ package com.example.ecommerceapp.domain.usecases.cartusecases
 import com.example.ecommerceapp.data.local.entity.CartEntity
 import com.example.ecommerceapp.data.model.products.ProductModelItem
 import com.example.ecommerceapp.data.model.products.Rating
+import javax.inject.Inject
 
-class ConvertCartEntityToProductModelUseCase  {
+class ConvertCartEntityToProductModelUseCase @Inject constructor()  {
 
     operator fun invoke(products : CartEntity) : ProductModelItem{
         return ProductModelItem(

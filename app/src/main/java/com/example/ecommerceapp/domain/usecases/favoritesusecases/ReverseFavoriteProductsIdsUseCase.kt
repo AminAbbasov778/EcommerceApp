@@ -1,5 +1,7 @@
 package com.example.ecommerceapp.domain.usecases.favoritesusecases
 
-class ReverseFavoriteProductsIdsUseCase  {
+import javax.inject.Inject
+
+class ReverseFavoriteProductsIdsUseCase  @Inject constructor() {
     operator fun invoke(idsList : List<Int>) : List<Int> = idsList.reversed()
 }
