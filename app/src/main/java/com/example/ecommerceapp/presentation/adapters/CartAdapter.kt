@@ -1,19 +1,18 @@
 package com.example.ecommerceapp.presentation.adapters
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import com.example.ecommerceapp.data.local.entity.CartEntity
 import com.example.ecommerceapp.databinding.ItemCartBinding
+import com.example.ecommerceapp.presentation.uimodels.CartUIModel
 import com.example.ecommerceapp.presentation.uimodels.UiModel
 import com.example.ecommerceapp.presentation.uiutils.GenericDiffUtil
 
-class CartAdapter(val onProductClick : (CartEntity) -> Unit, val onIncreasingBtnClick : (UiModel) -> Unit, val onDecreasingBtnClick : (UiModel) -> Unit, val onRemoveClick :(Int) -> Unit) : RecyclerView.Adapter<CartAdapter.CartViewHolder>() {
+class CartAdapter(val onProductClick : (CartUIModel) -> Unit, val onIncreasingBtnClick : (UiModel) -> Unit, val onDecreasingBtnClick : (UiModel) -> Unit, val onRemoveClick :(Int) -> Unit) : RecyclerView.Adapter<CartAdapter.CartViewHolder>() {
 
-    var productList = ArrayList<CartEntity>()
+    var productList = ArrayList<CartUIModel>()
 
 
     inner class CartViewHolder(val binding : ItemCartBinding): ViewHolder(binding.root)
@@ -34,7 +33,7 @@ class CartAdapter(val onProductClick : (CartEntity) -> Unit, val onIncreasingBtn
 
     }
 
-    fun updateList(newList : List<CartEntity>){
+    fun updateList(newList : List<CartUIModel>){
         val diffCallback = GenericDiffUtil(productList,newList, areItemsSame ={old,new -> old.id== new.id}, areContentsSame = {old,new->old == new})
         val diffResult = DiffUtil.calculateDiff(diffCallback)
         productList.clear()

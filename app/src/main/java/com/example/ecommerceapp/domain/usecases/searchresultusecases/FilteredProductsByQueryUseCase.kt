@@ -1,11 +1,11 @@
 package com.example.ecommerceapp.domain.usecases.searchresultusecases
 
-import com.example.ecommerceapp.data.model.products.ProductModelItem
+import com.example.ecommerceapp.domain.models.ProductModel
 import com.example.ecommerceapp.domain.usecases.homeusecases.GetProductsUseCase
 import javax.inject.Inject
 
 class FilteredProductsByQueryUseCase @Inject constructor(val getProductsUseCase: GetProductsUseCase) {
-    suspend operator fun invoke(query: String): Result<List<ProductModelItem>> {
+    suspend operator fun invoke(query: String): Result<List<ProductModel>> {
         val productsResult = getProductsUseCase()
         return if (productsResult.isSuccess) {
             val filteredProducts = productsResult.getOrNull()?.filter {

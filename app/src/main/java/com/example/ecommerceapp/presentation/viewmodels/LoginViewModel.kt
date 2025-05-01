@@ -1,6 +1,5 @@
 package com.example.ecommerceapp.presentation.viewmodels
 
-import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -9,8 +8,6 @@ import com.example.ecommerceapp.R
 import com.example.ecommerceapp.domain.domainstates.ValidationState
 import com.example.ecommerceapp.domain.usecases.loginusecases.LoginUserUseCase
 import com.example.ecommerceapp.domain.usecases.loginusecases.LoginValidationUseCase
-import com.example.ecommerceapp.domain.usecases.signupusecases.SaveUsernameUseCase
-import com.example.ecommerceapp.presentation.uistates.ResultState
 import com.example.ecommerceapp.presentation.uistates.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers

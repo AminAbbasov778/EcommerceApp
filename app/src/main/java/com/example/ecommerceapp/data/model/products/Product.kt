@@ -1,12 +1,9 @@
 package com.example.ecommerceapp.data.model.products
 
 
-import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
-import kotlinx.parcelize.Parcelize
 
-@Parcelize
-data class ProductModelItem(
+data class Product(
     @SerializedName("category")
     val category: String,
     @SerializedName("description")
@@ -24,4 +21,4 @@ data class ProductModelItem(
     val color : ArrayList<String>?,
     val size : ArrayList<String>?,
     var isFavorite : Boolean
-): Parcelable
+)

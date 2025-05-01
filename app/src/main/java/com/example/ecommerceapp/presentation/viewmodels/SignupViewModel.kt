@@ -8,11 +8,12 @@ import androidx.lifecycle.viewModelScope
 import com.example.ecommerceapp.R
 import com.example.ecommerceapp.domain.domainstates.ValidationState
 import com.example.ecommerceapp.domain.usecases.commonusecases.CapturePhotoUseCase
+import com.example.ecommerceapp.domain.usecases.editprofileusecases.ConvertUriToBase64UseCase
 import com.example.ecommerceapp.domain.usecases.editprofileusecases.UpdateUserProfileUseCase
-import com.example.ecommerceapp.domain.usecases.editprofileusecases.UserProfileModelUseCase
 import com.example.ecommerceapp.domain.usecases.signupusecases.SaveUsernameUseCase
 import com.example.ecommerceapp.domain.usecases.signupusecases.SignupUserUseCase
 import com.example.ecommerceapp.domain.usecases.signupusecases.SignupValidationUseCase
+import com.example.ecommerceapp.presentation.uimodels.NewProfileUiModel
 import com.example.ecommerceapp.presentation.uistates.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -25,9 +26,9 @@ class SignupViewModel @Inject constructor(
     val signupValidationUseCase: SignupValidationUseCase,
     val signupUserUseCase: SignupUserUseCase,
     val saveUsernameUseCase: SaveUsernameUseCase,
-    val userProfileModelUseCase: UserProfileModelUseCase,
     val updateUserProfileUseCase: UpdateUserProfileUseCase,
-    val capturePhotoUseCase: CapturePhotoUseCase
+    val capturePhotoUseCase: CapturePhotoUseCase,
+    val imageBase64UseCase: ConvertUriToBase64UseCase
 
     ) : ViewModel() {
 
@@ -88,8 +89,8 @@ class SignupViewModel @Inject constructor(
             val authResult = signupUserUseCase(email, password)
             if (authResult.isSuccess) {
                 val saveResult = saveUsernameUseCase(username)
-                val userProfile = userProfileModelUseCase(imageUri, username)
-                val updateResult = updateUserProfileUseCase(userProfile)
+                val imageBase64 = imageBase64UseCase(imageUri)
+                val updateResult = updateUserProfileUseCase(NewProfileUiModel(imageBase64,username))
 
                 withContext(Dispatchers.Main) {
                     if (saveResult.isSuccess && updateResult.isSuccess) {

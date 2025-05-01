@@ -1,22 +1,21 @@
 package com.example.ecommerceapp.presentation.fragments
 
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.ecommerceapp.databinding.FragmentSearchResultBinding
 import com.example.ecommerceapp.presentation.adapters.ProductsAdapter
 import com.example.ecommerceapp.presentation.uistates.UiState
-import com.example.ecommerceapp.presentation.viewmodels.SearchResultViewModel
 import com.example.ecommerceapp.presentation.uiutils.VisibilityUtils.setGone
 import com.example.ecommerceapp.presentation.uiutils.VisibilityUtils.show
+import com.example.ecommerceapp.presentation.viewmodels.SearchResultViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -45,7 +44,7 @@ class SearchResultFragment : Fragment() {
 
 
     private fun setupAdapter(){
-          productsAdapter = ProductsAdapter(onProductClick ={  findNavController().navigate(SearchResultFragmentDirections.actionSearchResultFragmentToDetailFragment(it,null))} , onEmptyFavoriteClick = {},onFullFavoriteClick = {},)
+          productsAdapter = ProductsAdapter(onProductClick ={  findNavController().navigate(SearchResultFragmentDirections.actionSearchResultFragmentToDetailFragment(it))} , onEmptyFavoriteClick = {},onFullFavoriteClick = {},)
 
 
 

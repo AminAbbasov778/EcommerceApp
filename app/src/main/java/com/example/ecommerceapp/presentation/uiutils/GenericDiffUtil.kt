@@ -1,7 +1,6 @@
 package com.example.ecommerceapp.presentation.uiutils
 
 import androidx.recyclerview.widget.DiffUtil
-import com.example.ecommerceapp.data.model.products.ProductModelItem
 
 class GenericDiffUtil<T>(
     private val oldList: List<T>,

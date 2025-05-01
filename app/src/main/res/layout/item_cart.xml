@@ -5,7 +5,7 @@
 
         <variable
             name="product"
-            type="com.example.ecommerceapp.data.local.entity.CartEntity" />
+            type="com.example.ecommerceapp.presentation.uimodels.CartUIModel" />
     </data>
 
     <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"

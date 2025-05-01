@@ -3,16 +3,14 @@ package com.example.ecommerceapp.presentation.activities
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.example.ecommerceapp.R
 import com.example.ecommerceapp.databinding.ActivityMainBinding
-import com.example.ecommerceapp.presentation.fragments.StartFragmentDirections
-import com.example.ecommerceapp.presentation.viewmodels.MainViewModel
 import com.example.ecommerceapp.presentation.uiutils.VisibilityUtils.setGone
 import com.example.ecommerceapp.presentation.uiutils.VisibilityUtils.show
+import com.example.ecommerceapp.presentation.viewmodels.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

@@ -1,8 +1,5 @@
 package com.example.ecommerceapp.presentation.adapters
 
-import android.content.res.ColorStateList
-import android.graphics.Color
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
@@ -12,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.ecommerceapp.R
 import com.example.ecommerceapp.databinding.ItemSizeBinding
 import com.example.ecommerceapp.presentation.uiutils.GenericDiffUtil
-import com.example.ecommerceapp.presentation.viewmodels.DetailViewModel
 
 class SizesAdapter(val clickOn : (position : Int,size : String) -> Unit) : RecyclerView.Adapter<SizesAdapter.SizesViewHolder>() {
     var sizesList = ArrayList<String>()

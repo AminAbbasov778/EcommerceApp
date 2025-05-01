@@ -1,8 +1,10 @@
 package com.example.ecommerceapp.data.repositories
 
 import com.example.ecommerceapp.R
+import com.example.ecommerceapp.data.mappers.toDomain
+import com.example.ecommerceapp.data.model.settings.Settings
 import com.example.ecommerceapp.domain.interfaces.SettingsRepository
-import com.example.ecommerceapp.presentation.uimodels.SettingsModel
+import com.example.ecommerceapp.domain.models.SettingsModel
 import javax.inject.Inject
 
 class SettingsRepositoryImpl @Inject constructor() : SettingsRepository {
@@ -13,10 +15,13 @@ class SettingsRepositoryImpl @Inject constructor() : SettingsRepository {
             R.string.payment_methods
         )
 
-    override fun getAccountSettingsItems(): List<SettingsModel> =
-        arrayListOf<SettingsModel>(
-            SettingsModel(R.string.language, R.string.english),
-            SettingsModel(R.string.about_slada, null)
+    override fun getAccountSettingsItems(): List<SettingsModel>
+    {
+        val list =   arrayListOf<Settings>(  Settings(R.string.language, R.string.english),
+            Settings(R.string.about_slada, null)
         )
+        return list.map { it.toDomain() }
+    }
+
 
 }

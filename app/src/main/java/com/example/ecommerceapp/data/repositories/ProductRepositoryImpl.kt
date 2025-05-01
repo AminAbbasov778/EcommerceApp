@@ -1,19 +1,21 @@
 package com.example.ecommerceapp.data.repositories
 
 import android.util.Log
-import com.example.ecommerceapp.data.model.products.ProductModelItem
+import com.example.ecommerceapp.data.mappers.toDomain
+import com.example.ecommerceapp.data.model.products.Product
 import com.example.ecommerceapp.data.remote.RequestService
 import com.example.ecommerceapp.domain.interfaces.ProductRepository
+import com.example.ecommerceapp.domain.models.ProductModel
 import javax.inject.Inject
 
 class ProductRepositoryImpl @Inject constructor(val requestService: RequestService) :
     ProductRepository {
-    override suspend fun getProducts(): Result<List<ProductModelItem>> {
+    override suspend fun getProducts(): Result<List<ProductModel>> {
         return try {
             val response = requestService.getProducts()
             if (response.isSuccessful) {
                 response.body()?.let {
-                    Result.success(it)
+                    Result.success(it.map { it.toDomain() })
                 } ?: Result.failure(Exception("Empty response body"))
             } else {
                 Result.failure(Exception("API Error: ${response.message()}"))
@@ -24,7 +26,7 @@ class ProductRepositoryImpl @Inject constructor(val requestService: RequestServi
 
     }
 
-    override suspend fun getProductById(id : Int): Result<ProductModelItem> {
+    override suspend fun getProductById(id : Int): Result<ProductModel> {
         Log.e("yoxla80", "", )
         return try {
 
@@ -33,7 +35,7 @@ class ProductRepositoryImpl @Inject constructor(val requestService: RequestServi
             if(response.isSuccessful){
                 Log.e("yoxla69", "getProductByIdFromApi: ", )
                 response.body()?.let {
-                    Result.success(it)
+                    Result.success(it.toDomain())
 
                 } ?: Result.failure(Exception("Empty response body"))
 
@@ -48,12 +50,12 @@ class ProductRepositoryImpl @Inject constructor(val requestService: RequestServi
         }
     }
 
-    override suspend fun getProductsByCategory(category : String): Result<List<ProductModelItem>> {
+    override suspend fun getProductsByCategory(category : String): Result<List<ProductModel>> {
         return try {
            val response =  requestService.getProductsByCategory(category)
             if(response.isSuccessful){
                 response.body()?.let {
-                    Result.success(it)
+                    Result.success(it.map { it.toDomain() })
                 } ?: Result.failure(Exception("Empty response body"))
             }
             else{

@@ -1,21 +1,16 @@
 package com.example.ecommerceapp.presentation.fragments
 
-import android.app.AlertDialog
-import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
 import android.text.InputType
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.example.ecommerceapp.R
 import com.example.ecommerceapp.databinding.FragmentEditProfileBinding
 import com.example.ecommerceapp.presentation.uistates.ResultState
 import com.example.ecommerceapp.presentation.uistates.UiState
@@ -27,7 +22,6 @@ import com.example.ecommerceapp.presentation.uiutils.VisibilityUtils.show
 import com.example.ecommerceapp.presentation.viewmodels.EditProfileViewModel
 import com.example.ecommerceapp.utils.Constants.CAMERA_PERMISSION_REQUEST_CODE
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.Dispatchers
 
 @AndroidEntryPoint
 class EditProfileFragment : Fragment() {

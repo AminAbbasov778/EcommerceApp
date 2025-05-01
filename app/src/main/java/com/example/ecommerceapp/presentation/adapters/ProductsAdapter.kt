@@ -5,19 +5,19 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import com.example.ecommerceapp.data.model.products.ProductModelItem
 import com.example.ecommerceapp.databinding.ItemProductBinding
+import com.example.ecommerceapp.presentation.uimodels.ProductUiModel
 import com.example.ecommerceapp.presentation.uiutils.GenericDiffUtil
 import com.example.ecommerceapp.presentation.uiutils.VisibilityUtils.setGone
 import com.example.ecommerceapp.presentation.uiutils.VisibilityUtils.show
 
 class ProductsAdapter(
-    private val onProductClick: (ProductModelItem) -> Unit,
+    private val onProductClick: (ProductUiModel) -> Unit,
     private val onFullFavoriteClick: (Int) -> Unit,
     private val onEmptyFavoriteClick: (Int) -> Unit = {}
 ) : RecyclerView.Adapter<ProductsAdapter.ProductsViewHolder>() {
 
-    private var productsList = ArrayList<ProductModelItem>()
+    private var productsList = ArrayList<ProductUiModel>()
 
     inner class ProductsViewHolder(val binding: ItemProductBinding) : ViewHolder(binding.root)
 
@@ -35,7 +35,7 @@ class ProductsAdapter(
 
     override fun getItemCount(): Int = productsList.size
 
-    fun updateList(newList: List<ProductModelItem>) {
+    fun updateList(newList: List<ProductUiModel>) {
         val diffCallback = GenericDiffUtil(productsList,newList, areItemsSame ={old,new -> old.id == new.id}, areContentsSame = {old,new->old == new})
         val diffResult = DiffUtil.calculateDiff(diffCallback)
         productsList.clear()

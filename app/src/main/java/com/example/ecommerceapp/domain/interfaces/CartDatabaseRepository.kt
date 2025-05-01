@@ -1,12 +1,12 @@
 package com.example.ecommerceapp.domain.interfaces
 
-import com.example.ecommerceapp.data.local.entity.CartEntity
+import com.example.ecommerceapp.domain.models.cart.CartModel
 import kotlinx.coroutines.flow.Flow
 
 interface CartDatabaseRepository {
 
-   suspend fun readProduct(): Flow<Result<List<CartEntity>>>
-    suspend fun insertProduct(product: CartEntity) :  Result<Unit>
+   suspend fun readProduct(): Flow<Result<List<CartModel>>>
+    suspend fun insertProduct(product: CartModel) :  Result<Unit>
 
     suspend fun deleteProduct(id : Int) : Result<Unit>
 
@@ -17,5 +17,5 @@ interface CartDatabaseRepository {
 
 
  suspend fun updateProductCountAndPrice(id :Int, count : Int,price : Double): Result<Int>
- suspend fun getProductById(productId: Int): Flow<Result<CartEntity>>
+ suspend fun getProductById(productId: Int): Flow<Result<CartModel>>
 }

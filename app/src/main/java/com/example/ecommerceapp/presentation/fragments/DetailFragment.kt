@@ -1,29 +1,25 @@
 package com.example.ecommerceapp.presentation.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.compose.ui.text.font.Font
-import androidx.core.view.marginLeft
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
-import com.example.ecommerceapp.data.model.products.ProductModelItem
+import com.example.ecommerceapp.data.model.products.Product
 import com.example.ecommerceapp.databinding.FragmentDetailBinding
 import com.example.ecommerceapp.presentation.adapters.ColorsAdapter
 import com.example.ecommerceapp.presentation.adapters.RatingAdapter
 import com.example.ecommerceapp.presentation.adapters.SizesAdapter
-import com.example.ecommerceapp.presentation.uimodels.ColorUiModel
 import com.example.ecommerceapp.presentation.uistates.ResultState
 import com.example.ecommerceapp.presentation.uistates.UiState
 import com.example.ecommerceapp.presentation.uiutils.FormatUtils
-import com.example.ecommerceapp.presentation.viewmodels.DetailViewModel
 import com.example.ecommerceapp.presentation.uiutils.PicassoUtil.loadUrl
 import com.example.ecommerceapp.presentation.uiutils.VisibilityUtils.setGone
 import com.example.ecommerceapp.presentation.uiutils.VisibilityUtils.show
+import com.example.ecommerceapp.presentation.viewmodels.DetailViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -32,7 +28,6 @@ class DetailFragment : Fragment() {
     val args: DetailFragmentArgs by navArgs()
     val viewModel by viewModels<DetailViewModel>()
     val ratingAdapter = RatingAdapter()
-    var product: ProductModelItem? = null
     lateinit var colorsAdapter: ColorsAdapter
     lateinit var sizesAdapter: SizesAdapter
 
@@ -48,74 +43,44 @@ class DetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupAdapter()
-        callInitialEvents()
+        viewModel.isProductAddedToCart(args.product.id)
+       setData()
         observe()
-        clickOn()
+        onClick()
     }
 
-    private fun getProduct() {
-        product?.let { prod ->
-            prod.color?.let { colorsAdapter.updateList(prod.color) }
-            prod.size?.let { sizesAdapter.updateList(prod.size) }
-            viewModel.fetchStars(prod.rating.rate)
-            binding.productImg.loadUrl(prod.image)
-            binding.productTitle.text = prod.title
-            binding.reviewCount.text = "${prod.rating.count} reviews"
+    private fun setData() {
+
+            args.product.colorList?.let { colorsAdapter.updateList(it) }
+            args.product.sizeList?.let { sizesAdapter.updateList(it) }
+            viewModel.fetchStars(args.product.rating.rate)
+            binding.productImg.loadUrl(args.product.image)
+            binding.productTitle.text = args.product.title
+            binding.reviewCount.text = "${args.product.rating.count} reviews"
 
             binding.currency.text = " | $"
-            binding.descriptionContent.text = prod.description
-        }
+            binding.descriptionContent.text = args.product.description
+        binding.price.text = FormatUtils.formatPrice(args.product.price)
+
+
     }
 
-    private fun callInitialEvents() {
 
-        args.product?.let {
-            product = it
-            viewModel.isProductAddedToCart(it.id)
-            binding.price.text = FormatUtils.formatPrice(it.price)
-            getProduct()
-        } ?: run {
-            viewModel.getProductByIdFromApi(args.cartProduct!!.id)
-        }
 
-        viewModel.apiProduct.observe(viewLifecycleOwner) { state ->
-            when (state) {
-                is UiState.Success -> {
-                    state.data?.let {
-                        product = it
-                        viewModel.fetchStars(it.rating.rate)
-                        viewModel.isProductAddedToCart(it.id)
-                        binding.loading.setGone()
-                        getProduct()
-                    }
-                }
-
-                is UiState.Error -> {
-                    args.cartProduct?.let {
-                        product = it
-                        viewModel.getProductByIdFromCart(it.id)
-                        binding.loading.setGone()
-                    }
-                }
-
-                is UiState.Loading -> binding.loading.show()
-            }
-        }
-    }
-
-    private fun setupAdapter() {
+     fun setupAdapter() {
         sizesAdapter = SizesAdapter { position, size ->
-            product?.let { viewModel.updateProductSizeInCart(it.id, size, position) }
+            viewModel.updateProductSizeInCart(args.product.id, size, position)
         }
         colorsAdapter = ColorsAdapter { position, color ->
-            product?.let { viewModel.updateProductColorInCart(it.id, color, position) }
+             viewModel.updateProductColorInCart(args.product.id, color, position)
         }
         binding.ratingRecView.adapter = ratingAdapter
         binding.sizeRecView.adapter = sizesAdapter
         binding.colorRecView.adapter = colorsAdapter
     }
 
-    private fun observe() {
+     fun observe() {
+
         viewModel.stars.observe(viewLifecycleOwner) {
             ratingAdapter.updateList(it)
         }
@@ -142,7 +107,7 @@ class DetailFragment : Fragment() {
 
                     if (isProdInCart.data) {
                         binding.buttonName.text = "Remove from Cart"
-                        product?.let { viewModel.getProductByIdFromCart(it.id) }
+                         viewModel.getProductByIdFromCart(args.product.id)
 
                     } else {
 
@@ -157,7 +122,7 @@ class DetailFragment : Fragment() {
         }
 
         viewModel.productCountAndPrice.observe(viewLifecycleOwner) {
-            product?.let { product -> viewModel.updateProductCountAndPriceInCart(it) }
+             product -> viewModel.updateProductCountAndPriceInCart(product)
         }
 
         viewModel.updateProductSize.observe(viewLifecycleOwner) {
@@ -202,20 +167,17 @@ class DetailFragment : Fragment() {
                 is ResultState.Success -> {
                     val count = binding.count.text.toString().toInt()
                     val sizeState = viewModel.updateProductSize.value
-                    val size =
-                        if (sizeState is UiState.Success) product?.size?.let { it[sizeState.data] } else ""
+                    val size = if (sizeState is UiState.Success) args.product.sizeList?.let { it[sizeState.data] }  else ""
                     val colorState = viewModel.updateProductColor.value
-                    val color =
-                        if (colorState is UiState.Success) product?.color?.let { it[colorState.data] } else ""
+                    val color = if (colorState is UiState.Success)  args.product.colorList?.let { it[colorState.data]  }   else ""
                     val sizePosition = if (sizeState is UiState.Success) sizeState.data else -1
                     val colorPosition = if (colorState is UiState.Success) colorState.data else -1
                     val price = binding.price.text.toString().toDouble()
 
-                    product?.let {
                         viewModel.insertProductToCart(
-                            it, color!!, colorPosition, sizePosition, size!!, count,price
+                            args.product, color!!, colorPosition, sizePosition, size!!, count,price
                         )
-                    }
+
                 }
 
                 is ResultState.Error -> Toast.makeText(context, it.message, Toast.LENGTH_SHORT)
@@ -231,7 +193,7 @@ class DetailFragment : Fragment() {
                         sizesAdapter.setPosition(it.size.sizePosition)
                         colorsAdapter.setPosition(it.color.colorPosition)
                         binding.price.text = FormatUtils.formatPrice(it.price)
-                        getProduct()
+                        setData()
                     }
                 }
 
@@ -241,20 +203,20 @@ class DetailFragment : Fragment() {
         }
     }
 
-    private fun clickOn() {
+    private fun onClick() {
         binding.addOrRemoveCard.setOnClickListener {
             val value = viewModel.isProductInCart.value
             val isProductInCart = if(value is UiState.Success) value.data else false
             if(isProductInCart){
-                product?.let { viewModel.deleteProductFromCart(it.id) }
+                 viewModel.deleteProductFromCart(it.id)
             }
             else{
                 val sizeState = viewModel.updateProductSize.value
                 val size =
-                    if (sizeState is UiState.Success) product?.size?.let { it[sizeState.data] } else ""
+                    if (sizeState is UiState.Success) args.product.sizeList?.let { it[sizeState.data]    } else ""
                 val colorState = viewModel.updateProductColor.value
                 val color =
-                    if (colorState is UiState.Success) product?.color?.let { it[colorState.data] } else ""
+                    if (colorState is UiState.Success)  args.product.colorList?.let {  it[colorState.data] }  else ""
                 viewModel.isColorOrSizeEmpty(color!!, size!!)
 
             }
@@ -266,40 +228,41 @@ class DetailFragment : Fragment() {
         binding.decreasingBg.setOnClickListener {
             val price = binding.price.text.toString()
             val count = binding.count.text.toString()
-            product?.let { viewModel.decreaseCountAndPrice(it.id,count,price) }
+             viewModel.decreaseCountAndPrice(it.id,count,price)
 
         }
 
         binding.increasingBg.setOnClickListener {
             val price = binding.price.text.toString()
             val count = binding.count.text.toString()
-            product?.let { viewModel.increaseCountAndPrice(it.id,count,price) }
+             viewModel.increaseCountAndPrice(it.id,count,price)
         }
     }
 
-    private fun successfulAddingToCartProcess(message: Int) {
+     fun successfulAddingToCartProcess(message: Int) {
         Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
-        product?.let { viewModel.isProductAddedToCart(it.id) }
+        viewModel.isProductAddedToCart(args.product.id)
         binding.loading.setGone()
 
 
     }
 
-    private fun successfulRemovingFromCartProcess(message: Int) {
+     fun successfulRemovingFromCartProcess(message: Int) {
         Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
         binding.loading.setGone()
-        product?.let {  viewModel.isProductAddedToCart(it.id) }
+         viewModel.isProductAddedToCart(args.product.id)
 
     }
 
 
-    private fun uiStateError(message: Int) {
+     fun uiStateError(message: Int) {
         binding.loading.setGone()
         Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
     }
 
-    private fun uiStateSuccess(message: Int) {
+     fun uiStateSuccess(message: Int) {
         binding.loading.setGone()
         Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
     }
+
 }

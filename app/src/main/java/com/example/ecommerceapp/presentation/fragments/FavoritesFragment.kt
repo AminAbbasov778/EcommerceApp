@@ -1,14 +1,13 @@
 package com.example.ecommerceapp.presentation.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.example.ecommerceapp.R
 import com.example.ecommerceapp.databinding.FragmentFavoritesBinding
 import com.example.ecommerceapp.presentation.adapters.ProductsAdapter
 import com.example.ecommerceapp.presentation.uistates.UiState
@@ -38,7 +37,7 @@ class FavoritesFragment : Fragment() {
     }
 
     private fun setupAdapter(){
-        productsAdapter = ProductsAdapter(onProductClick = { findNavController().navigate(FavoritesFragmentDirections.actionFavoritesFragmentToDetailFragment(it,null)) }, onFullFavoriteClick = {viewModel.removeProductFromFavoritesById(it)})
+        productsAdapter = ProductsAdapter(onProductClick = { findNavController().navigate(FavoritesFragmentDirections.actionFavoritesFragmentToDetailFragment(it)) }, onFullFavoriteClick = {viewModel.removeProductFromFavoritesById(it)})
         binding.favoritesRecView.adapter = productsAdapter
     }
 

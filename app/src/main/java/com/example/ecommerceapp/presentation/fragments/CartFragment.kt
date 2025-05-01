@@ -1,7 +1,6 @@
 package com.example.ecommerceapp.presentation.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,9 +12,9 @@ import com.example.ecommerceapp.databinding.FragmentCartBinding
 import com.example.ecommerceapp.presentation.adapters.CartAdapter
 import com.example.ecommerceapp.presentation.uistates.UiState
 import com.example.ecommerceapp.presentation.uiutils.FormatUtils
-import com.example.ecommerceapp.presentation.viewmodels.CartViewModel
 import com.example.ecommerceapp.presentation.uiutils.VisibilityUtils.setGone
 import com.example.ecommerceapp.presentation.uiutils.VisibilityUtils.show
+import com.example.ecommerceapp.presentation.viewmodels.CartViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -62,7 +61,6 @@ class CartFragment : Fragment() {
             product?.let {
                 findNavController().navigate(
                     CartFragmentDirections.actionCartFragmentToDetailFragment(
-                        null,
                         it
                     )
                 )
@@ -95,6 +93,16 @@ class CartFragment : Fragment() {
         viewModel.sumOfPrices.observe(viewLifecycleOwner){
 
             binding.totalAmount.text ="$" + FormatUtils.formatPrice(it)
+        }
+        viewModel.isProductRemoved.observe(viewLifecycleOwner){
+            when(it){
+                is UiState.Success -> binding.loading.setGone()
+                is UiState.Error -> {
+                    binding.loading.setGone()
+                    Toast.makeText(context, it.message, Toast.LENGTH_SHORT).show()
+                }
+                is UiState.Loading -> binding.loading.show()
+            }
         }
 
     }

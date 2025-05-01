@@ -1,25 +1,29 @@
 package com.example.ecommerceapp.presentation.viewmodels
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.ecommerceapp.R
-import com.example.ecommerceapp.data.local.entity.CartEntity
-import com.example.ecommerceapp.data.model.products.ProductModelItem
-import com.example.ecommerceapp.domain.usecases.commonusecases.UpdateProductCountAndPriceInCartUseCase
-import com.example.ecommerceapp.domain.usecases.detailusecases.CreateRatingStarListUseCase
 import com.example.ecommerceapp.domain.usecases.commonusecases.DeleteProductFromCartUseCase
 import com.example.ecommerceapp.domain.usecases.commonusecases.GetProductByIdFromApiUseCase
+import com.example.ecommerceapp.domain.usecases.commonusecases.UpdateProductCountAndPriceInCartUseCase
+import com.example.ecommerceapp.domain.usecases.detailusecases.CreateRatingStarListUseCase
 import com.example.ecommerceapp.domain.usecases.detailusecases.GetProductByIdFromDbUseCase
 import com.example.ecommerceapp.domain.usecases.detailusecases.InsertProductToCartUseCase
 import com.example.ecommerceapp.domain.usecases.detailusecases.IsColorOrSizeEmptyUseCase
 import com.example.ecommerceapp.domain.usecases.detailusecases.IsProductAddedToCartUseCase
 import com.example.ecommerceapp.domain.usecases.detailusecases.UpdateProductColorInCartUseCase
 import com.example.ecommerceapp.domain.usecases.detailusecases.UpdateProductSizeInCartUseCase
-import com.example.ecommerceapp.presentation.uistates.ResultState
+import com.example.ecommerceapp.presentation.mappers.toDomain
+import com.example.ecommerceapp.presentation.mappers.toUi
+import com.example.ecommerceapp.presentation.uimodels.CartUIModel
+import com.example.ecommerceapp.presentation.uimodels.ColorUiModel
+import com.example.ecommerceapp.presentation.uimodels.ProductUiModel
+import com.example.ecommerceapp.presentation.uimodels.RatingUIModel
+import com.example.ecommerceapp.presentation.uimodels.SizeUiModel
 import com.example.ecommerceapp.presentation.uimodels.UiModel
+import com.example.ecommerceapp.presentation.uistates.ResultState
 import com.example.ecommerceapp.presentation.uistates.UiState
 import com.example.ecommerceapp.presentation.uiutils.CartUtils
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -70,11 +74,11 @@ class DetailViewModel @Inject constructor(
     private var _isColorOrSizeEmpty = MutableLiveData<ResultState<Unit>>()
     val isColorOrSizeEmpty: LiveData<ResultState<Unit>> get() = _isColorOrSizeEmpty
 
-    private var _cartProduct = MutableLiveData<UiState<CartEntity?>>()
-    val cartProduct: LiveData<UiState<CartEntity?>> get() = _cartProduct
+    private var _cartProduct = MutableLiveData<UiState<CartUIModel?>>()
+    val cartProduct: LiveData<UiState<CartUIModel?>> get() = _cartProduct
 
-    private var _apiProduct = MutableLiveData<UiState<ProductModelItem?>>()
-    val apiProduct: LiveData<UiState<ProductModelItem?>> get() = _apiProduct
+    private var _apiProduct = MutableLiveData<UiState<ProductUiModel?>>()
+    val apiProduct: LiveData<UiState<ProductUiModel?>> get() = _apiProduct
 
 
     fun fetchStars(rating: Double) {
@@ -87,7 +91,7 @@ class DetailViewModel @Inject constructor(
             val productResult = getProductByIdFromApiUseCase(id)
             withContext(Dispatchers.Main) {
                 if (productResult.isSuccess) {
-                    _apiProduct.value = UiState.Success(productResult.getOrNull())
+                    _apiProduct.value = UiState.Success(productResult.getOrNull()?.toUi())
                 } else {
                     _apiProduct.value = UiState.Error(R.string.wrong_something)
                 }
@@ -96,22 +100,20 @@ class DetailViewModel @Inject constructor(
     }
 
     fun insertProductToCart(
-        product: ProductModelItem,
+        product: ProductUiModel,
         color: String,
         colorPosition: Int,
         sizePosition: Int,
         size: String,
-        quantity: Int,price: Double
+        quantity: Int, price: Double
     ) {
         _isProductInserted.value = UiState.Loading
         viewModelScope.launch(Dispatchers.IO) {
             var result = insertProductToCartUseCase(
-                product,
-                color,
-                colorPosition,
-                size,
-                sizePosition,
-                quantity,price
+                CartUIModel(product.id,product.category,product.description,product.image,price,product.title,
+                    SizeUiModel(size,sizePosition,product.sizeList),
+                    ColorUiModel(color,colorPosition,product.colorList),quantity,
+                    RatingUIModel(product.rating.rate,product.rating.count),product.isFavorite).toDomain()
             )
             withContext(Dispatchers.Main) {
                 _isProductInserted.value = when {
@@ -257,7 +259,7 @@ class DetailViewModel @Inject constructor(
             val cartFlow = getProductByIdFromDbUseCase(productId)
             cartFlow.collect { product ->
                 _cartProduct.value = if (product.isSuccess) {
-                    UiState.Success(product.getOrNull())
+                    UiState.Success(product.getOrNull()?.toUi())
                 } else {
                     UiState.Error(R.string.process_is_failure)
                 }

@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
         <variable
             name="products"
-            type="com.example.ecommerceapp.data.model.products.ProductModelItem" />
+            type="com.example.ecommerceapp.presentation.uimodels.ProductUiModel" />
     </data>
 <androidx.cardview.widget.CardView
     android:id="@+id/productCardView"

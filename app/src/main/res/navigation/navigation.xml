@@ -80,13 +80,7 @@
         tools:layout="@layout/fragment_detail">
         <argument
             android:name="product"
-            app:argType="com.example.ecommerceapp.data.model.products.ProductModelItem"
-            app:nullable="true"
-            />
-        <argument
-            android:name="cartProduct"
-            app:nullable="true"
-            app:argType="com.example.ecommerceapp.data.model.products.ProductModelItem" />
+            app:argType="com.example.ecommerceapp.presentation.uimodels.ProductUiModel" />
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"

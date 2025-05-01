@@ -1,15 +1,15 @@
 package com.example.ecommerceapp.presentation.viewmodels
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.ecommerceapp.R
-import com.example.ecommerceapp.data.model.products.ProductModelItem
 import com.example.ecommerceapp.domain.usecases.commonusecases.GetProductByIdFromApiUseCase
-import com.example.ecommerceapp.domain.usecases.favoritesusecases.GetFavoriteProductsIdsUseCase
 import com.example.ecommerceapp.domain.usecases.commonusecases.RemoveProductFromFavoritesByIdUseCase
+import com.example.ecommerceapp.domain.usecases.favoritesusecases.GetFavoriteProductsIdsUseCase
+import com.example.ecommerceapp.presentation.mappers.toUi
+import com.example.ecommerceapp.presentation.uimodels.ProductUiModel
 import com.example.ecommerceapp.presentation.uistates.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -30,8 +30,8 @@ class FavoritesViewModel @Inject constructor(
     private var _isProductRemoved = MutableLiveData<UiState<Int>>()
     val isProductRemoved: LiveData<UiState<Int>> get() = _isProductRemoved
 
-    private var _favoriteProducts = MutableLiveData<UiState<List<ProductModelItem>>>()
-    val favoriteProducts: LiveData<UiState<List<ProductModelItem>>> get() = _favoriteProducts
+    private var _favoriteProducts = MutableLiveData<UiState<List<ProductUiModel>>>()
+    val favoriteProducts: LiveData<UiState<List<ProductUiModel>>> get() = _favoriteProducts
 
     init {
         getFavoriteProductsIds()
@@ -59,7 +59,7 @@ class FavoritesViewModel @Inject constructor(
     fun getFavoriteProductsById(ids: List<Int>) {
 
         viewModelScope.launch(Dispatchers.IO) {
-            val products = mutableListOf<ProductModelItem>()
+            val products = mutableListOf<ProductUiModel>()
             val error = mutableListOf<Int>()
             coroutineScope {
                 val jobs = ids.map { id ->
@@ -68,7 +68,7 @@ class FavoritesViewModel @Inject constructor(
                         if (result.isSuccess) {
                             result.getOrNull()?.let {
                                 it.isFavorite = true
-                                products.add(it) }
+                                products.add(it.toUi()) }
                         } else {
                             error.add(R.string.process_is_failure)
                         }

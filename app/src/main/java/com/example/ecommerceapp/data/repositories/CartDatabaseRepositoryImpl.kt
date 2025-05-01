@@ -1,14 +1,15 @@
 package com.example.ecommerceapp.data.repositories
 
-import android.util.Log
 import com.example.ecommerceapp.data.local.dao.DeleteProductDao
 import com.example.ecommerceapp.data.local.dao.InsertProductDao
 import com.example.ecommerceapp.data.local.dao.IsProductAddedDao
 import com.example.ecommerceapp.data.local.dao.ReadProductsDao
 import com.example.ecommerceapp.data.local.dao.UpdateProductCountAndPriceDao
 import com.example.ecommerceapp.data.local.dao.UpdateProductDetailDao
-import com.example.ecommerceapp.data.local.entity.CartEntity
+import com.example.ecommerceapp.data.mappers.toData
+import com.example.ecommerceapp.data.mappers.toDomain
 import com.example.ecommerceapp.domain.interfaces.CartDatabaseRepository
+import com.example.ecommerceapp.domain.models.cart.CartModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
@@ -21,10 +22,10 @@ class CartDatabaseRepositoryImpl(
     val updateProductDetailDao: UpdateProductDetailDao,
     val updateProductCountAndPriceDao: UpdateProductCountAndPriceDao,
 ) : CartDatabaseRepository {
-    override suspend fun readProduct(): Flow<Result<List<CartEntity>>> {
+    override suspend fun readProduct(): Flow<Result<List<CartModel>>> {
         return try {
             readProductsDao.getProducts().map { products ->
-                Result.success(products)
+                Result.success(products.map { it.toDomain() } )
             }
         } catch (e: Exception) {
             flow { emit(Result.failure(e)) }
@@ -34,9 +35,9 @@ class CartDatabaseRepositoryImpl(
 
     }
 
-    override suspend fun insertProduct(product: CartEntity): Result<Unit> {
+    override suspend fun insertProduct(product: CartModel): Result<Unit> {
         return try {
-            writeProductsDao.insertProduct(product)
+            writeProductsDao.insertProduct(product.toData())
             Result.success(Unit)
         } catch (e: Exception) {
             Result.failure(e)
@@ -98,9 +99,9 @@ class CartDatabaseRepositoryImpl(
         }
     }
 
-    override suspend fun getProductById(productId: Int): Flow<Result<CartEntity>> {
+    override suspend fun getProductById(productId: Int): Flow<Result<CartModel>> {
        return try {
-             readProductsDao.getProductById(productId).map { product -> Result.success(product) }
+             readProductsDao.getProductById(productId).map { product -> Result.success(product.toDomain()) }
        } catch (e :Exception){
           flow {emit(Result.failure(e))   }
        }

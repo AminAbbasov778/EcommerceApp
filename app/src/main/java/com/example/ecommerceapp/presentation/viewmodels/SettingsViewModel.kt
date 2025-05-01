@@ -8,7 +8,8 @@ import com.example.ecommerceapp.R
 import com.example.ecommerceapp.domain.usecases.settingsusecases.GetAccountSettingsItemsUseCase
 import com.example.ecommerceapp.domain.usecases.settingsusecases.GetPersonalSettingsItemsUseCase
 import com.example.ecommerceapp.domain.usecases.settingsusecases.LogoutUseCase
-import com.example.ecommerceapp.presentation.uimodels.SettingsModel
+import com.example.ecommerceapp.presentation.mappers.toUi
+import com.example.ecommerceapp.presentation.uimodels.SettingsUiModel
 import com.example.ecommerceapp.presentation.uistates.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -23,8 +24,8 @@ class SettingsViewModel @Inject constructor(val logoutUseCase: LogoutUseCase,val
     private var _personalSettingsItem = MutableLiveData<List<Int>>()
     val personalSettingsItem: LiveData<List<Int>> get() = _personalSettingsItem
 
-    private var _accountSettingsItem = MutableLiveData<List<SettingsModel>>()
-    val accountSettingsItem: LiveData<List<SettingsModel>> get() = _accountSettingsItem
+    private var _accountSettingsItem = MutableLiveData<List<SettingsUiModel>>()
+    val accountSettingsItem: LiveData<List<SettingsUiModel>> get() = _accountSettingsItem
 
     init {
         getPersonalSettingsItem()
@@ -45,7 +46,7 @@ class SettingsViewModel @Inject constructor(val logoutUseCase: LogoutUseCase,val
 
     }
     fun getAccountSettingsItems(){
-        _accountSettingsItem.value = getAccountSettingsItemsUseCase()
+        _accountSettingsItem.value = getAccountSettingsItemsUseCase().map { it.toUi() }
     }
 
 

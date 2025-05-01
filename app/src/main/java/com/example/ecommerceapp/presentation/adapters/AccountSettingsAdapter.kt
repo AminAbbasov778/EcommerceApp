@@ -1,21 +1,19 @@
 package com.example.ecommerceapp.presentation.adapters
 
 import android.content.Context
-import android.provider.Settings.Global.getString
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.ecommerceapp.R
-import com.example.ecommerceapp.data.model.products.ProductModelItem
 import com.example.ecommerceapp.databinding.AccountSettingsItemBinding
-import com.example.ecommerceapp.presentation.uimodels.SettingsModel
+import com.example.ecommerceapp.presentation.uimodels.SettingsUiModel
 import com.example.ecommerceapp.presentation.uiutils.GenericDiffUtil
 import com.example.ecommerceapp.presentation.uiutils.VisibilityUtils.show
 
 class AccountSettingsAdapter : RecyclerView.Adapter<AccountSettingsAdapter.AccountSettingsViewHolder>() {
-   val settingsList = ArrayList<SettingsModel>()
+   val settingsList = ArrayList<SettingsUiModel>()
    lateinit var  context : Context
     inner class AccountSettingsViewHolder(val binding : AccountSettingsItemBinding) : ViewHolder(binding.root)
 
@@ -46,7 +44,7 @@ class AccountSettingsAdapter : RecyclerView.Adapter<AccountSettingsAdapter.Accou
        return settingsList.size
     }
 
-    fun updateList(newList: List<SettingsModel>) {
+    fun updateList(newList: List<SettingsUiModel>) {
         val diffCallback = GenericDiffUtil(settingsList,newList, areItemsSame ={old,new -> old.settingName== new.settingName}, areContentsSame = {old,new->old == new})
         val diffResult = DiffUtil.calculateDiff(diffCallback)
         settingsList.clear()

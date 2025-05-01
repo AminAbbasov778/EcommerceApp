@@ -8,13 +8,14 @@ import androidx.lifecycle.viewModelScope
 import com.example.ecommerceapp.R
 import com.example.ecommerceapp.domain.usecases.commonusecases.CapturePhotoUseCase
 import com.example.ecommerceapp.domain.usecases.commonusecases.GetProfileDataUseCase
+import com.example.ecommerceapp.domain.usecases.editprofileusecases.ConvertUriToBase64UseCase
 import com.example.ecommerceapp.domain.usecases.editprofileusecases.GetUserEmailUseCase
 import com.example.ecommerceapp.domain.usecases.editprofileusecases.GetUsernameUseCase
 import com.example.ecommerceapp.domain.usecases.editprofileusecases.UpdatePasswordUseCase
 import com.example.ecommerceapp.domain.usecases.editprofileusecases.UpdateUserProfileUseCase
 import com.example.ecommerceapp.domain.usecases.editprofileusecases.UpdateUsernameUseCase
-import com.example.ecommerceapp.domain.usecases.editprofileusecases.UserProfileModelUseCase
-import com.example.ecommerceapp.presentation.uimodels.UserProfileUiModel
+import com.example.ecommerceapp.presentation.uimodels.NewProfileUiModel
+import com.example.ecommerceapp.presentation.uimodels.ProfileUiModel
 import com.example.ecommerceapp.presentation.uistates.ResultState
 import com.example.ecommerceapp.presentation.uistates.UiState
 import com.example.ecommerceapp.presentation.uiutils.ImageUtils
@@ -32,8 +33,8 @@ class EditProfileViewModel @Inject constructor(
     private val updatePasswordUseCase: UpdatePasswordUseCase,
     private val capturePhotoUseCase: CapturePhotoUseCase,
     private val updateUserProfileUseCase: UpdateUserProfileUseCase,
-    private val userProfileModelUseCase: UserProfileModelUseCase,
     private val getProfileDataUseCase: GetProfileDataUseCase,
+    private val imagesBase64UseCase: ConvertUriToBase64UseCase
 ) : ViewModel() {
 
     private val _username = MutableLiveData<ResultState<String>>()
@@ -51,8 +52,8 @@ class EditProfileViewModel @Inject constructor(
     private val _imagePickerOptions = MutableLiveData<Array<String>>()
     val imagePickerOptions: LiveData<Array<String>> get() = _imagePickerOptions
 
-    private val _profileData = MutableLiveData<UiState<UserProfileUiModel>>()
-    val profileData: LiveData<UiState<UserProfileUiModel>> get() = _profileData
+    private val _profileData = MutableLiveData<UiState<ProfileUiModel>>()
+    val profileData: LiveData<UiState<ProfileUiModel>> get() = _profileData
 
     init {
         getUserProfileData()
@@ -77,7 +78,7 @@ class EditProfileViewModel @Inject constructor(
                         profileData.getOrNull()?.let { data ->
                             val imageBitmap = ImageUtils.base64ToBitmap(data.imageBase64)
                             _profileData.value = UiState.Success(
-                                UserProfileUiModel(
+                                ProfileUiModel(
                                     imageBitmap = imageBitmap,
                                     username = data.username
                                 )
@@ -110,9 +111,9 @@ class EditProfileViewModel @Inject constructor(
 
     private fun updateUserProfileFirebaseData(imageUri: Uri?, userName: String) {
         _updateResult.value = UiState.Loading
-        val userProfile = userProfileModelUseCase(imageUri, userName)
         viewModelScope.launch(Dispatchers.IO) {
-            val result = updateUserProfileUseCase(userProfile)
+            val imageBase64 = imagesBase64UseCase(imageUri)
+            val result = updateUserProfileUseCase(NewProfileUiModel(imageBase64,userName))
             withContext(Dispatchers.Main) {
                 _updateResult.value =
                     if (result.isSuccess) UiState.Success(R.string.successful_updating_profile)

@@ -6,7 +6,7 @@
 
         <variable
             name="category"
-            type="com.example.ecommerceapp.data.model.category.CategoryModel" />
+            type="com.example.ecommerceapp.presentation.uimodels.CategoryUiModel" />
     </data>
 
     <androidx.cardview.widget.CardView

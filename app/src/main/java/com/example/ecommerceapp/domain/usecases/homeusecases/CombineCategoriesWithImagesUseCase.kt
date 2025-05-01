@@ -1,8 +1,7 @@
 package com.example.ecommerceapp.domain.usecases.homeusecases
 
-import com.example.ecommerceapp.R
-import com.example.ecommerceapp.data.model.category.CategoryModel
 import com.example.ecommerceapp.domain.interfaces.CategoryRepository
+import com.example.ecommerceapp.domain.models.CategoryModel
 import javax.inject.Inject
 
 class CombineCategoriesWithImagesUseCase @Inject constructor(

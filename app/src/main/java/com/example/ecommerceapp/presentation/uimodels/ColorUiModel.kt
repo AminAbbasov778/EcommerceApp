@@ -1,5 +1,5 @@
 package com.example.ecommerceapp.presentation.uimodels
 
 data class ColorUiModel(
-    val name: String
+    val color : String,val colorPosition : Int,val colorList : ArrayList<String>?
 )

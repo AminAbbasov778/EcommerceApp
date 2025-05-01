@@ -1,10 +1,10 @@
 package com.example.ecommerceapp.di.modules
 
+import android.content.Context
+import android.content.SharedPreferences
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import android.content.Context
-import android.content.SharedPreferences
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton

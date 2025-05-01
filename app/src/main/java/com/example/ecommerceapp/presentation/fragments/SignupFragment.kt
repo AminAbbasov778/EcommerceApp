@@ -1,6 +1,5 @@
 package com.example.ecommerceapp.presentation.fragments
 
-import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
 import android.text.InputType
@@ -17,9 +16,9 @@ import com.example.ecommerceapp.databinding.FragmentSignupBinding
 import com.example.ecommerceapp.presentation.uistates.UiState
 import com.example.ecommerceapp.presentation.uiutils.CameraPermissionUtils
 import com.example.ecommerceapp.presentation.uiutils.DialogUtils
-import com.example.ecommerceapp.presentation.viewmodels.SignupViewModel
 import com.example.ecommerceapp.presentation.uiutils.VisibilityUtils.setGone
 import com.example.ecommerceapp.presentation.uiutils.VisibilityUtils.show
+import com.example.ecommerceapp.presentation.viewmodels.SignupViewModel
 import com.example.ecommerceapp.utils.Constants.CAMERA_PERMISSION_REQUEST_CODE
 import dagger.hilt.android.AndroidEntryPoint
 

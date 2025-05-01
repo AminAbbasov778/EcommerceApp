@@ -1,9 +1,10 @@
 package com.example.ecommerceapp.data.repositories
 
-import android.util.Log
-import com.example.ecommerceapp.domain.domainstates.UserProfileModel
+import com.example.ecommerceapp.data.mappers.toData
+import com.example.ecommerceapp.data.mappers.toDomain
+import com.example.ecommerceapp.data.model.profile.Profile
 import com.example.ecommerceapp.domain.interfaces.UserRepository
-import com.google.firebase.Firebase
+import com.example.ecommerceapp.domain.models.ProfileModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.channels.awaitClose
@@ -79,14 +80,15 @@ class UserRepositoryImpl @Inject constructor(val firebaseAuth: FirebaseAuth,val 
         }
     }
 
-    override suspend fun uploadProfileData(userProfileModel: UserProfileModel): Result<Unit> {
+    override suspend fun uploadProfileData(profileModel: ProfileModel): Result<Unit> {
+        val profile = profileModel.toData()
         val user = firebaseAuth.currentUser
         val userProfile = fireStore.collection("users").document(user?.uid ?: "")
         return try {
             userProfile.set(
                 mapOf(
-                    "imageBase64" to userProfileModel.imageBase64,
-                    "username" to userProfileModel.username,
+                    "imageBase64" to profile.imageBase64,
+                    "username" to profile.username,
                 )
 
             ).await()
@@ -95,7 +97,7 @@ class UserRepositoryImpl @Inject constructor(val firebaseAuth: FirebaseAuth,val 
             Result.failure(e)
         }
     }
-    override suspend fun getProfileData(): Flow<Result<UserProfileModel>> = callbackFlow {
+    override suspend fun getProfileData(): Flow<Result<ProfileModel>> = callbackFlow {
         try {
             val user = firebaseAuth.currentUser
 
@@ -114,8 +116,8 @@ class UserRepositoryImpl @Inject constructor(val firebaseAuth: FirebaseAuth,val 
                         when {
                             error != null -> Result.failure(error)
                             snapshot != null -> {
-                                val profile = snapshot.toObject(UserProfileModel::class.java)
-                                if (profile != null) Result.success(profile)
+                                val profile = snapshot.toObject(Profile::class.java)
+                                if (profile != null) Result.success(profile.toDomain())
                                 else Result.failure(Exception("Profile not found"))
                             }
 

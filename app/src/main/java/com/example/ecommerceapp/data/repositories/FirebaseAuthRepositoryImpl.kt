@@ -1,6 +1,5 @@
 package com.example.ecommerceapp.data.repositories
 
-import android.util.Log
 import com.example.ecommerceapp.domain.interfaces.FirebaseAuthRepository
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.EmailAuthProvider

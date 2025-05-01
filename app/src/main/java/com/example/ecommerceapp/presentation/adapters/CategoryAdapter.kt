@@ -5,14 +5,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import com.example.ecommerceapp.data.local.entity.CartEntity
-import com.example.ecommerceapp.data.model.category.CategoryModel
 import com.example.ecommerceapp.databinding.ItemCategoryBinding
+import com.example.ecommerceapp.presentation.uimodels.CategoryUiModel
 import com.example.ecommerceapp.presentation.uiutils.GenericDiffUtil
 
 class CategoryAdapter(val clickOn : (String) -> Unit) : RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
 
-    var categoryList = ArrayList<CategoryModel>()
+    var categoryList = ArrayList<CategoryUiModel>()
 
     inner class CategoryViewHolder(val binding: ItemCategoryBinding) : ViewHolder(binding.root)
 
@@ -33,7 +32,7 @@ class CategoryAdapter(val clickOn : (String) -> Unit) : RecyclerView.Adapter<Cat
        }
     }
 
-    fun updateList(newList : List<CategoryModel>){
+    fun updateList(newList : List<CategoryUiModel>){
         val diffCallback = GenericDiffUtil(categoryList,newList, areItemsSame ={old,new -> old== new}, areContentsSame = {old,new->old == new})
         val diffResult = DiffUtil.calculateDiff(diffCallback)
         categoryList.clear()

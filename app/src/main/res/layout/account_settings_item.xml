@@ -6,7 +6,7 @@
         >
         <variable
             name="settings"
-            type="com.example.ecommerceapp.presentation.uimodels.SettingsModel" />
+            type="com.example.ecommerceapp.presentation.uimodels.SettingsUiModel" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"

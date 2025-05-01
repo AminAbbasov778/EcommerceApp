@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.ecommerceapp.R
 import com.example.ecommerceapp.domain.usecases.commonusecases.GetProfileDataUseCase
-import com.example.ecommerceapp.presentation.uimodels.UserProfileUiModel
+import com.example.ecommerceapp.presentation.uimodels.ProfileUiModel
 import com.example.ecommerceapp.presentation.uistates.UiState
 import com.example.ecommerceapp.presentation.uiutils.ImageUtils
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -18,8 +18,8 @@ import javax.inject.Inject
 @HiltViewModel
 class ProfileViewModel @Inject constructor(val getProfileDataUseCase: GetProfileDataUseCase) :
     ViewModel() {
-    private var _profileData = MutableLiveData<UiState<UserProfileUiModel>>()
-    val profileData: LiveData<UiState<UserProfileUiModel>> get() = _profileData
+    private var _profileData = MutableLiveData<UiState<ProfileUiModel>>()
+    val profileData: LiveData<UiState<ProfileUiModel>> get() = _profileData
 
     init {
         getProfileData()
@@ -34,14 +34,12 @@ class ProfileViewModel @Inject constructor(val getProfileDataUseCase: GetProfile
                     if (profileData.isSuccess) {
                         val data = profileData.getOrNull()
                         data?.let {
-                            val imageBitmap = ImageUtils.base64ToBitmap(data.imageBase64)
-                            _profileData.value = UiState.Success(
-                                UserProfileUiModel(
-                                    imageBitmap,
-                                    data.username,
-                                )
+                            val imageBitmap = ImageUtils.base64ToBitmap(it.imageBase64)
+                            _profileData.value = UiState.Success(ProfileUiModel(imageBitmap,it.username)
                             )
                         }
+
+
                     } else {
                         _profileData.value = UiState.Error(R.string.process_is_failure)
                     }

@@ -1,20 +1,20 @@
 package com.example.ecommerceapp.presentation.viewmodels
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.ecommerceapp.R
-import com.example.ecommerceapp.data.local.entity.CartEntity
-import com.example.ecommerceapp.data.model.products.ProductModelItem
-import com.example.ecommerceapp.domain.usecases.cartusecases.ConvertCartEntityToProductModelUseCase
 import com.example.ecommerceapp.domain.usecases.cartusecases.GetProductsFromDbUseCase
 import com.example.ecommerceapp.domain.usecases.cartusecases.ReverseCartProductsListUseCase
 import com.example.ecommerceapp.domain.usecases.cartusecases.SumOfProductsPricesUseCase
-import com.example.ecommerceapp.domain.usecases.commonusecases.UpdateProductCountAndPriceInCartUseCase
 import com.example.ecommerceapp.domain.usecases.commonusecases.DeleteProductFromCartUseCase
-import com.example.ecommerceapp.presentation.uimodels.ColorUiModel
+import com.example.ecommerceapp.domain.usecases.commonusecases.UpdateProductCountAndPriceInCartUseCase
+import com.example.ecommerceapp.presentation.mappers.toDomain
+import com.example.ecommerceapp.presentation.mappers.toProductUiModel
+import com.example.ecommerceapp.presentation.mappers.toUi
+import com.example.ecommerceapp.presentation.uimodels.CartUIModel
+import com.example.ecommerceapp.presentation.uimodels.ProductUiModel
 import com.example.ecommerceapp.presentation.uimodels.UiModel
 import com.example.ecommerceapp.presentation.uistates.UiState
 import com.example.ecommerceapp.presentation.uiutils.CartUtils
@@ -27,7 +27,6 @@ import javax.inject.Inject
 @HiltViewModel
 class CartViewModel @Inject constructor(
     val getProductsFromDbUseCase: GetProductsFromDbUseCase,
-    val convertCartEntityToProductModelUseCase: ConvertCartEntityToProductModelUseCase,
     val updateProductCountAndPriceInCartUseCase: UpdateProductCountAndPriceInCartUseCase,
     val sumOfProductsPricesUseCase: SumOfProductsPricesUseCase,
     val reverseCartProductsListUseCase: ReverseCartProductsListUseCase,
@@ -35,11 +34,11 @@ class CartViewModel @Inject constructor(
 ) :
     ViewModel() {
 
-    private var _cartProducts = MutableLiveData<UiState<List<CartEntity>>>()
-    val cartProducts: LiveData<UiState<List<CartEntity>>> get() = _cartProducts
+    private var _cartProducts = MutableLiveData<UiState<List<CartUIModel>>>()
+    val cartProducts: LiveData<UiState<List<CartUIModel>>> get() = _cartProducts
 
-    private var _product = MutableLiveData<ProductModelItem?>()
-    val product: LiveData<ProductModelItem?> get() = _product
+    private var _product = MutableLiveData<ProductUiModel?>()
+    val product: LiveData<ProductUiModel?> get() = _product
 
     private var _updatedProductCountAndPrice = MutableLiveData<UiState<UiModel>>()
     val updatedProductCountAndPrice : LiveData<UiState<UiModel>> get() = _updatedProductCountAndPrice
@@ -117,7 +116,7 @@ class CartViewModel @Inject constructor(
                 withContext(Dispatchers.Main){
                     if(products.isSuccess){
                         val reversedList =  reverseCartProductsListUseCase(products.getOrNull() ?: emptyList())
-                        _cartProducts.value = UiState.Success(reversedList)
+                        _cartProducts.value = UiState.Success(reversedList.map { it.toUi() })
                     }
                     else {
 
@@ -129,12 +128,12 @@ class CartViewModel @Inject constructor(
         }
     }
 
-    fun convertCartEntityToProductItemModel(product: CartEntity) {
-        _product.value = convertCartEntityToProductModelUseCase(product)
+    fun convertCartEntityToProductItemModel(product: CartUIModel) {
+        _product.value = product.toProductUiModel()
     }
 
-    fun sumOfProductsPrices(products : List<CartEntity>){
-      _sumOfPrices.value =  sumOfProductsPricesUseCase(products)
+    fun sumOfProductsPrices(products : List<CartUIModel>){
+      _sumOfPrices.value =  sumOfProductsPricesUseCase(products.map { it.toDomain() })
     }
 
     fun clearProduct()  {
