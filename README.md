@@ -2,7 +2,33 @@
 
 **EcommerceApp** is a modern Kotlin-based Android e-commerce application that allows users to browse, search, and interact with products in a smooth, responsive interface. Built using MVVM, Clean Architecture, Kotlin Coroutines, and Firebase for real-time functionality.
 
+
 ---
+
+## 📸 Screenshots
+
+| Start Page | Log In | Sign Up | Home Page |
+|------------|---------|---------|-----------|
+| <img src="screenshotrs/Screenshot_20250611-140434.png" width="200" height="400" /> | <img src="screenshotrs/Screenshot_20250611-140737.png" width="200" height="400" /> | <img src="screenshotrs/Screenshot_20250611-140452.png" width="200" height="400" /> | <img src="screenshotrs/Screenshot_20250611-141056.png" width="200" height="400" /> |
+
+| Product Detail | Add Image | Chat Page | Search Page |
+|----------------|-------------|------------|--------------|
+| <img src="screenshotrs/Screenshot_20250611-141426.png" width="200" height="400" /> | <img src="screenshotrs/Screenshot_20250611-140808.png" width="200" height="400" /> | <img src="screenshotrs/Screenshot_20250611-141403.png" width="200" height="400" /> | <img src="screenshotrs/Screenshot_20250611-141201.png" width="200" height="400" /> |
+
+| Search Result | Cart Page | Favorite Page | Settings Page |
+|----------------|------------|----------------|----------------|
+| <img src="screenshotrs/Screenshot_20250611-141218.png" width="200" height="400" /> | <img src="screenshotrs/Screenshot_20250611-141544.png" width="200" height="400" /> | <img src="screenshotrs/Screenshot_20250611-141453.png" width="200" height="400" /> | <img src="screenshotrs/Screenshot_20250611-141617.png" width="200" height="400" /> |
+
+| Profile Page | Edit Profile | Language Page |
+|----------------|---------------|-----------------|
+| <img src="screenshotrs/Screenshot_20250611-141602.png" width="200" height="400" /> | <img src="screenshotrs/Screenshot_20250611-141708.png" width="200" height="400" /> | <img src="screenshotrs/Screenshot_20250611-141632.png" width="200" height="400" /> |
+
+
+
+---
+
+
+
 
 ## 📱 Key Screens & Features
 
@@ -25,25 +51,7 @@
 * **Language Page** – Change application language 
 * **Favorite Page** – Access your liked/favorited products
 
----
 
-## 📸 Screenshots
-
-| Start Page | Log In | Sign Up | Home Page |
-|------------|---------|---------|-----------|
-| <img src="screenshotrs/Screenshot_20250611-140434.png" width="200" height="400" /> | <img src="screenshotrs/Screenshot_20250611-140737.png" width="200" height="400" /> | <img src="screenshotrs/Screenshot_20250611-140452.png" width="200" height="400" /> | <img src="screenshotrs/Screenshot_20250611-141056.png" width="200" height="400" /> |
-
-| Product Detail | Add Image | Chat Page | Search Page |
-|----------------|-------------|------------|--------------|
-| <img src="screenshotrs/Screenshot_20250611-141426.png" width="200" height="400" /> | <img src="screenshotrs/Screenshot_20250611-140808.png" width="200" height="400" /> | <img src="screenshotrs/Screenshot_20250611-141403.png" width="200" height="400" /> | <img src="screenshotrs/Screenshot_20250611-141201.png" width="200" height="400" /> |
-
-| Search Result | Cart Page | Favorite Page | Settings Page |
-|----------------|------------|----------------|----------------|
-| <img src="screenshotrs/Screenshot_20250611-141218.png" width="200" height="400" /> | <img src="screenshotrs/Screenshot_20250611-141544.png" width="200" height="400" /> | <img src="screenshotrs/Screenshot_20250611-141453.png" width="200" height="400" /> | <img src="screenshotrs/Screenshot_20250611-141617.png" width="200" height="400" /> |
-
-| Profile Page | Edit Profile | Language Page |
-|----------------|---------------|-----------------|
-| <img src="screenshotrs/Screenshot_20250611-141602.png" width="200" height="400" /> | <img src="screenshotrs/Screenshot_20250611-141708.png" width="200" height="400" /> | <img src="screenshotrs/Screenshot_20250611-141632.png" width="200" height="400" /> |
 
 
 ---
