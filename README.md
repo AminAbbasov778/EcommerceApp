@@ -60,7 +60,6 @@
 | **Material Design 3**    | UI and design system                   |
 | **Firebase Auth**        | Email-based login                      |
 | **Firebase Firestore**   | Real-time DB for product data and chat |
-| **Firebase Storage**     | Upload and retrieve product images     |
 | **Room**                 | Local database (e.g., favorites, cart) |
 | **Retrofit**             | Network layer with coroutine support   |
 | **Hilt**                 | Dependency injection                   |
