@@ -17,6 +17,9 @@ data class CartEntity(
     @Embedded val color : ColorEntity,
     val quantity : Int,
     @Embedded val rating: RatingEntity,
-    val isFavorite : Boolean
+    val isFavorite : Boolean,
+    val ownerId: String,
+    val ownerName: String,
+    val ownerImage: Int
 
     )

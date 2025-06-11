@@ -9,9 +9,9 @@ import com.example.ecommerceapp.presentation.uimodels.SizeUiModel
 
 
 fun CartUIModel.toProductUiModel(): ProductUiModel{
-return ProductUiModel(category,description,id,image,price, RatingUIModel(rating.rate,rating.count),title,color.colorList,size.sizeList,isFavorite)
+return ProductUiModel(category,description,id,image,price, RatingUIModel(rating.rate,rating.count),title,color.colorList,size.sizeList,isFavorite,ownerId,ownerName,ownerImage)
 }
 
 fun CartModel.toUi(): CartUIModel{
-    return CartUIModel(id,category,description,image,price,title, SizeUiModel(size.size,size.sizePosition,size.sizeList), ColorUiModel(color.color,color.colorPosition,color.colorList),quantity, RatingUIModel(rating.rate,rating.count),isFavorite)
+    return CartUIModel(id,category,description,image,price,title, SizeUiModel(size.size,size.sizePosition,size.sizeList), ColorUiModel(color.color,color.colorPosition,color.colorList),quantity, RatingUIModel(rating.rate,rating.count),isFavorite,ownerId,ownerName,ownerImage)
 }

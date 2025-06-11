@@ -14,7 +14,7 @@ import com.example.ecommerceapp.presentation.viewmodels.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
     lateinit var binding: ActivityMainBinding
     val  viewModel by viewModels<MainViewModel>()
      var navHostFragment: NavHostFragment? = null

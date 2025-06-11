@@ -11,6 +11,7 @@
     <color name="second_text_color">#707070</color>
     <color name="error_red">#f20707</color>
     <color name="pale_red">#D97474</color>
+    <color name="choice_color">#F8CECE</color>
     <color name="detail_bg">#104FFFFF</color>
     <color name="success_green">#018e3e</color>
     <color name="transparent">#00000000</color>

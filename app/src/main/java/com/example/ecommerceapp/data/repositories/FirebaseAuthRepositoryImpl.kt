@@ -71,4 +71,7 @@ class FirebaseAuthRepositoryImpl @Inject constructor(val firebaseAuth: FirebaseA
         }
 
     }
+    override fun getCurrentUserId(): String? {
+        return firebaseAuth.currentUser?.uid
+    }
 }

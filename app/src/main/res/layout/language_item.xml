@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="lang"
+            type="com.example.ecommerceapp.presentation.uimodels.LanguageUiModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:background="@color/white">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/languageCard"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:backgroundTint="@color/pale_blue"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:strokeColor="@color/pale_blue">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/languageConstraint"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/language"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:fontFamily="@font/nunito_sans_semibold"
+                    android:text="@{lang.language}"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="@id/languageConstraint"
+                    app:layout_constraintLeft_toLeftOf="@id/languageConstraint"
+                    app:layout_constraintTop_toTopOf="@id/languageConstraint">
+
+                </com.google.android.material.textview.MaterialTextView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/selectCard"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginRight="15dp"
+                    android:backgroundTint="@{lang.isSelected ? @color/primary_blue : @color/choice_color}"
+                    app:cardCornerRadius="100dp"
+                    app:layout_constraintBottom_toBottomOf="@id/languageConstraint"
+                    app:layout_constraintRight_toRightOf="@id/languageConstraint"
+                    app:layout_constraintTop_toTopOf="@id/languageConstraint"
+                    app:strokeColor="@color/white"
+                    app:strokeWidth="2dp">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/selectedLogo"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="8dp"
+                        android:src="@drawable/selectlogo"
+                        android:visibility="@{lang.isSelected ? View.VISIBLE : View.GONE}" >
+
+                    </com.google.android.material.imageview.ShapeableImageView>
+
+
+                </com.google.android.material.card.MaterialCardView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

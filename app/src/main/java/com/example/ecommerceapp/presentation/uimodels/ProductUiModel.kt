@@ -11,7 +11,10 @@ data class ProductUiModel(val category: String,
                           val price: Double,
                           val rating: RatingUIModel,
                           val title: String,
-                          val colorList : ArrayList<String>?,
-                          val sizeList : ArrayList<String>?,
-                          var isFavorite : Boolean) : Parcelable{
+                          val colorList : ArrayList<String>,
+                          val sizeList : ArrayList<String>,
+                          var isFavorite : Boolean,
+                          val ownerId: String,
+                          val ownerName: String,
+                          val ownerImage: Int ) : Parcelable{
 }

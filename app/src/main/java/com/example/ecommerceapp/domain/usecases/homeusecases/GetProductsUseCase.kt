@@ -6,11 +6,11 @@ import com.example.ecommerceapp.domain.usecases.commonusecases.AddColorAndSizeTo
 import com.example.ecommerceapp.presentation.mappers.toDomain
 import javax.inject.Inject
 
-class GetProductsUseCase @Inject constructor(val addColorAndSizeToProductsListUseCase: AddColorAndSizeToProductsListUseCase, val productRepository: ProductRepository) {
+class GetProductsUseCase @Inject constructor(val addColorAndSizeToProductsListUseCase: AddColorAndSizeToProductsListUseCase, val productRepository: ProductRepository,val addProductOwnerDataToProductsUseCase: AddProductOwnerDataToProductsUseCase) {
 
     suspend operator fun invoke(): Result<List<ProductModel>> {
         val productsList = productRepository.getProducts()
-      return productsList.map { addColorAndSizeToProductsListUseCase(it) }
+      return productsList.map { addColorAndSizeToProductsListUseCase(addProductOwnerDataToProductsUseCase(it)) }
     }
 
 

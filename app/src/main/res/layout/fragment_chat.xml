@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_white"
+    tools:context=".presentation.fragments.ChatFragment">
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/productOwnerImgCard"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="63dp"
+        app:cardCornerRadius="100dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:strokeColor="@color/white"
+        app:strokeWidth="3dp">
+
+
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@id/productOwnerImg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:scaleType="fitXY"
+            android:src="@drawable/profile">
+
+        </com.google.android.material.imageview.ShapeableImageView>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/productOwnerName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:fontFamily="@font/raleway_bold"
+        android:maxLines="1"
+        android:textColor="@color/primary_blue"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="@id/productOwnerImgCard"
+        app:layout_constraintLeft_toRightOf="@id/productOwnerImgCard"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/productOwnerImgCard">
+
+    </com.google.android.material.textview.MaterialTextView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/chatRecView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="15dp"
+        app:layout_constraintLeft_toLeftOf="@id/productOwnerImgCard"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginRight="20dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@id/chatConstraint"
+        app:layout_constraintTop_toBottomOf="@id/productOwnerImgCard"
+        >
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/chatConstraint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="25dp"
+        android:background="@color/pale_blue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/chatEditTextCard"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_marginVertical="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="5dp"
+            android:backgroundTint="@color/white"
+            app:cardCornerRadius="100dp"
+            app:layout_constraintBottom_toBottomOf="@id/chatConstraint"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/sendIconCard"
+            app:layout_constraintTop_toTopOf="@id/chatConstraint"
+            app:strokeColor="@color/white">
+
+
+            <EditText
+                android:id="@+id/chatEditText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/transparent"
+                android:textColor="@color/black"
+                android:paddingLeft="23dp"
+                android:hint="Chat"
+                android:textColorHint="@color/hint_text"
+                android:paddingRight="20dp"
+                android:cursorVisible="true"
+                android:textSize="20sp"
+                android:fontFamily="@font/raleway_medium"
+                >
+
+            </EditText>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/sendIconCard"
+            android:layout_width="60dp"
+            android:layout_height="0dp"
+            app:cardCornerRadius="100dp"
+            android:layout_marginRight="20dp"
+            app:strokeColor="@color/primary_blue"
+            android:backgroundTint="@color/primary_blue"
+            app:layout_constraintBottom_toBottomOf="@id/chatEditTextCard"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/chatEditTextCard">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/sendIcon"
+                android:padding="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/send"
+
+                >
+
+            </com.google.android.material.imageview.ShapeableImageView>
+        </com.google.android.material.card.MaterialCardView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/loading"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/chatConstraint"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/productOwnerName"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/loading"
+        app:lottie_renderMode="automatic">
+
+    </com.airbnb.lottie.LottieAnimationView>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,4 +9,5 @@ interface FirebaseAuthRepository {
     fun isUserLoggedIn() : Boolean
     suspend fun updatePassword(currentPassword: String, newPassword: String): Result<Unit>
     fun getCurrentUserEmail(): Result<String?>
+    fun getCurrentUserId(): String?
 }

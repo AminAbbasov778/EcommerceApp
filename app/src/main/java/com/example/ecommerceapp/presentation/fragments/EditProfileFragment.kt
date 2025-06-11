@@ -211,25 +211,28 @@ class EditProfileFragment : Fragment() {
         }
 
 
-        viewModel.profileData.observe(viewLifecycleOwner) {
-            when (it) {
-                is UiState.Success -> {
-                    binding.loading.setGone()
-                    imageBitmap = it.data.imageBitmap
-                    binding.profileImg.setImageBitmap(it.data.imageBitmap)
-                    binding.userNameEditText.setText(it.data.username)
+        viewModel.profileData.observe(viewLifecycleOwner) {state ->
+            state?.let {
+                when (it) {
+                    is UiState.Success -> {
+                        binding.loading.setGone()
+                        imageBitmap = it.data.imageBitmap
+                        binding.profileImg.setImageBitmap(it.data.imageBitmap)
+                        binding.userNameEditText.setText(it.data.username)
 
+                    }
+
+                    is UiState.Error -> {
+                        binding.loading.setGone()
+                        Toast.makeText(context, it.message, Toast.LENGTH_SHORT).show()
+                    }
+
+                    is UiState.Loading -> binding.loading.show()
                 }
 
-                is UiState.Error -> {
-                    binding.loading.setGone()
-                    Toast.makeText(context, it.message, Toast.LENGTH_SHORT).show()
-                }
-
-                is UiState.Loading -> binding.loading.show()
+            } ?: run { binding.loading.setGone() }
             }
 
-        }
     }
 
 

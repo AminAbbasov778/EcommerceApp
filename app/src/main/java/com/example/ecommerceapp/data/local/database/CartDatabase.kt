@@ -13,7 +13,7 @@ import com.example.ecommerceapp.data.local.dao.UpdateProductCountAndPriceDao
 import com.example.ecommerceapp.data.local.dao.UpdateProductDetailDao
 import com.example.ecommerceapp.data.local.entity.CartEntity
 
-@Database(entities = [CartEntity::class], version = 5, exportSchema = false)
+@Database(entities = [CartEntity::class], version = 7, exportSchema = false)
 @TypeConverters(Converters::class)
 abstract class CartDatabase : RoomDatabase(){
 

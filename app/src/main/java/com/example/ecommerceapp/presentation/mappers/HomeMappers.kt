@@ -10,5 +10,6 @@ fun CategoryModel.toUi(): CategoryUiModel{
     return CategoryUiModel(categoryName,images)
 }
 fun ProductModel.toUi(): ProductUiModel{
-    return ProductUiModel(category,description,id,image,price, RatingUIModel(rating.rate,rating.count),title,color,size,isFavorite)
+
+    return ProductUiModel(category,description,id,image,price, RatingUIModel(rating.rate,rating.count),title,color,size,isFavorite,ownerId,ownerName,ownerImage)
 }

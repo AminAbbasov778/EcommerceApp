@@ -100,10 +100,14 @@ class CartDatabaseRepositoryImpl(
     }
 
     override suspend fun getProductById(productId: Int): Flow<Result<CartModel>> {
-       return try {
-             readProductsDao.getProductById(productId).map { product -> Result.success(product.toDomain()) }
-       } catch (e :Exception){
-          flow {emit(Result.failure(e))   }
-       }
+        return try {
+            readProductsDao.getProductById(productId).map { product ->
+                product?.let { Result.success(it.toDomain()) }
+                    ?: Result.failure(NullPointerException("Product not found with id: $productId"))
+            }
+        } catch (e: Exception) {
+            flow { emit(Result.failure(e)) }
+        }
     }
+
 }

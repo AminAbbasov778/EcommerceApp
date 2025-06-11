@@ -43,18 +43,16 @@ class DetailViewModel @Inject constructor(
     val updateProductCountAndPriceInCartUseCase: UpdateProductCountAndPriceInCartUseCase,
     val isColorOrSizeEmptyUseCase: IsColorOrSizeEmptyUseCase,
     val getProductByIdFromDbUseCase: GetProductByIdFromDbUseCase,
-    val getProductByIdFromApiUseCase: GetProductByIdFromApiUseCase,
-
     ) : ViewModel() {
 
     private var _stars = MutableLiveData<List<Boolean>>()
     val stars: LiveData<List<Boolean>> get() = _stars
 
-    private var _isProductInserted = MutableLiveData<UiState<Int>>()
-    val isProductInserted: LiveData<UiState<Int>> get() = _isProductInserted
+    private var _isProductInserted = MutableLiveData<UiState<Unit>>()
+    val isProductInserted: LiveData<UiState<Unit>> get() = _isProductInserted
 
-    private var _isProductRemoved = MutableLiveData<UiState<Int>>()
-    val isProductRemoved: LiveData<UiState<Int>> get() = _isProductRemoved
+    private var _isProductRemoved = MutableLiveData<UiState<Unit>>()
+    val isProductRemoved: LiveData<UiState<Unit>> get() = _isProductRemoved
 
     private var _isProductInCart = MutableLiveData<UiState<Boolean>>()
     val isProductInCart: LiveData<UiState<Boolean>> get() = _isProductInCart
@@ -71,14 +69,11 @@ class DetailViewModel @Inject constructor(
     private var _updatedProductCountAndPrice = MutableLiveData<UiState<UiModel>>()
     val updatedProductCountAndPrice: LiveData<UiState<UiModel>> get() = _updatedProductCountAndPrice
 
-    private var _isColorOrSizeEmpty = MutableLiveData<ResultState<Unit>>()
-    val isColorOrSizeEmpty: LiveData<ResultState<Unit>> get() = _isColorOrSizeEmpty
+    private var _isColorOrSizeEmpty = MutableLiveData<ResultState<Unit>?>()
+    val isColorOrSizeEmpty: LiveData<ResultState<Unit>?> get() = _isColorOrSizeEmpty
 
     private var _cartProduct = MutableLiveData<UiState<CartUIModel?>>()
     val cartProduct: LiveData<UiState<CartUIModel?>> get() = _cartProduct
-
-    private var _apiProduct = MutableLiveData<UiState<ProductUiModel?>>()
-    val apiProduct: LiveData<UiState<ProductUiModel?>> get() = _apiProduct
 
 
     fun fetchStars(rating: Double) {
@@ -86,18 +81,8 @@ class DetailViewModel @Inject constructor(
 
     }
 
-    fun getProductByIdFromApi(id: Int) {
-        viewModelScope.launch(Dispatchers.IO) {
-            val productResult = getProductByIdFromApiUseCase(id)
-            withContext(Dispatchers.Main) {
-                if (productResult.isSuccess) {
-                    _apiProduct.value = UiState.Success(productResult.getOrNull()?.toUi())
-                } else {
-                    _apiProduct.value = UiState.Error(R.string.wrong_something)
-                }
-            }
-        }
-    }
+
+
 
     fun insertProductToCart(
         product: ProductUiModel,
@@ -105,19 +90,31 @@ class DetailViewModel @Inject constructor(
         colorPosition: Int,
         sizePosition: Int,
         size: String,
-        quantity: Int, price: Double
+        quantity: Int, price: Double, ownerName: String, ownerImg: Int, ownerId: String,
     ) {
         _isProductInserted.value = UiState.Loading
         viewModelScope.launch(Dispatchers.IO) {
             var result = insertProductToCartUseCase(
-                CartUIModel(product.id,product.category,product.description,product.image,price,product.title,
-                    SizeUiModel(size,sizePosition,product.sizeList),
-                    ColorUiModel(color,colorPosition,product.colorList),quantity,
-                    RatingUIModel(product.rating.rate,product.rating.count),product.isFavorite).toDomain()
+                CartUIModel(
+                    product.id,
+                    product.category,
+                    product.description,
+                    product.image,
+                    price,
+                    product.title,
+                    SizeUiModel(size, sizePosition, product.sizeList),
+                    ColorUiModel(color, colorPosition, product.colorList),
+                    quantity,
+                    RatingUIModel(product.rating.rate, product.rating.count),
+                    product.isFavorite,
+                    ownerId,
+                    ownerName,
+                    ownerImg
+                ).toDomain()
             )
             withContext(Dispatchers.Main) {
                 _isProductInserted.value = when {
-                    result.isSuccess -> UiState.Success<Int>(R.string.adding_product_to_cart_successful)
+                    result.isSuccess -> UiState.Success(Unit)
                     result.isFailure -> UiState.Error(R.string.adding_product_to_cart_failure)
                     else -> UiState.Error(R.string.unknown_error)
 
@@ -136,7 +133,7 @@ class DetailViewModel @Inject constructor(
             var result = deleteProductFromCartUseCase(id)
             withContext(Dispatchers.Main) {
                 _isProductRemoved.value = when {
-                    result.isSuccess -> UiState.Success(R.string.removing_product_to_cart_successful)
+                    result.isSuccess -> UiState.Success(Unit)
                     result.isFailure -> UiState.Error(R.string.removing_product_to_cart_failure)
                     else -> UiState.Error(R.string.unknown_error)
                 }
@@ -174,7 +171,6 @@ class DetailViewModel @Inject constructor(
             _productCountAndPrice.value = uiModel
         }
     }
-
 
 
     fun updateProductSizeInCart(id: Int, size: String, position: Int) {
@@ -228,7 +224,7 @@ class DetailViewModel @Inject constructor(
             val count = uiModel.count.toInt()
             _updatedProductCountAndPrice.value = UiState.Loading
             viewModelScope.launch(Dispatchers.IO) {
-                val result = updateProductCountAndPriceInCartUseCase(uiModel.id,count,price)
+                val result = updateProductCountAndPriceInCartUseCase(uiModel.id, count, price)
                 withContext(Dispatchers.Main) {
                     _updatedProductCountAndPrice.value = if (result.isSuccess) {
                         UiState.Success(uiModel)
@@ -258,18 +254,23 @@ class DetailViewModel @Inject constructor(
         viewModelScope.launch {
             val cartFlow = getProductByIdFromDbUseCase(productId)
             cartFlow.collect { product ->
-                _cartProduct.value = if (product.isSuccess) {
-                    UiState.Success(product.getOrNull()?.toUi())
+                 if (product.isSuccess) {
+                     _cartProduct.value =  UiState.Success(product.getOrNull()?.toUi())
                 } else {
-                    UiState.Error(R.string.process_is_failure)
+                    val exception = product.exceptionOrNull()
+                    if (exception !is NullPointerException) {
+                        _cartProduct.value =  UiState.Error(R.string.process_is_failure)
+                    }
+
                 }
-
-
             }
-
-
         }
     }
+
+    fun clearData(){
+        _isColorOrSizeEmpty.value = null
+    }
+
 
 
 }

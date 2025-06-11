@@ -13,8 +13,10 @@ import com.example.ecommerceapp.data.repositories.BannerRepositoryImpl
 import com.example.ecommerceapp.data.repositories.CameraRepositoryImpl
 import com.example.ecommerceapp.data.repositories.CartDatabaseRepositoryImpl
 import com.example.ecommerceapp.data.repositories.CategoryRepositoryImpl
+import com.example.ecommerceapp.data.repositories.ChatRepositoryImpl
 import com.example.ecommerceapp.data.repositories.DetailRepositoryImpl
 import com.example.ecommerceapp.data.repositories.FirebaseAuthRepositoryImpl
+import com.example.ecommerceapp.data.repositories.LanguageRepositoryImpl
 import com.example.ecommerceapp.data.repositories.ProductRepositoryImpl
 import com.example.ecommerceapp.data.repositories.SettingsRepositoryImpl
 import com.example.ecommerceapp.data.repositories.UserPreferencesRepositoryImpl
@@ -23,8 +25,10 @@ import com.example.ecommerceapp.domain.interfaces.BannerRepository
 import com.example.ecommerceapp.domain.interfaces.CameraRepository
 import com.example.ecommerceapp.domain.interfaces.CartDatabaseRepository
 import com.example.ecommerceapp.domain.interfaces.CategoryRepository
+import com.example.ecommerceapp.domain.interfaces.ChatRepository
 import com.example.ecommerceapp.domain.interfaces.DetailRepository
 import com.example.ecommerceapp.domain.interfaces.FirebaseAuthRepository
+import com.example.ecommerceapp.domain.interfaces.LanguageRepository
 import com.example.ecommerceapp.domain.interfaces.ProductRepository
 import com.example.ecommerceapp.domain.interfaces.SettingsRepository
 import com.example.ecommerceapp.domain.interfaces.UserPreferencesRepository
@@ -112,5 +116,12 @@ object RepositoryModule {
     @Singleton
     fun provideSettingsRepository():SettingsRepository  = SettingsRepositoryImpl()
 
+   @Provides
+   @Singleton
+   fun provideChatRepositoryImpl(firebaseFireStore: FirebaseFirestore,firebaseAuth: FirebaseAuth):ChatRepository = ChatRepositoryImpl(firebaseFireStore,firebaseAuth)
+
+    @Provides
+    @Singleton
+    fun provideLanguageRepositoryImpl(sharedPreferences: SharedPreferences):LanguageRepository = LanguageRepositoryImpl(sharedPreferences)
 
 }

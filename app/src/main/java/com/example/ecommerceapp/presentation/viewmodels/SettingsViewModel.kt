@@ -11,12 +11,20 @@ import com.example.ecommerceapp.domain.usecases.settingsusecases.LogoutUseCase
 import com.example.ecommerceapp.presentation.mappers.toUi
 import com.example.ecommerceapp.presentation.uimodels.SettingsUiModel
 import com.example.ecommerceapp.presentation.uistates.UiState
+import com.example.mynewsapp.domain.usecases.languageusecases.GetCurrentLanguageUseCase
+import com.example.mynewsapp.domain.usecases.languageusecases.GetLanguageListUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class SettingsViewModel @Inject constructor(val logoutUseCase: LogoutUseCase,val getPersonalSettingsItemsUseCase: GetPersonalSettingsItemsUseCase,val getAccountSettingsItemsUseCase: GetAccountSettingsItemsUseCase) : ViewModel() {
+class SettingsViewModel @Inject constructor(
+    val logoutUseCase: LogoutUseCase,
+    val getPersonalSettingsItemsUseCase: GetPersonalSettingsItemsUseCase,
+    val getAccountSettingsItemsUseCase: GetAccountSettingsItemsUseCase,
+    val getCurrentLanguageUseCase: GetCurrentLanguageUseCase,
+    val getLanguageListUseCase: GetLanguageListUseCase
+) : ViewModel() {
 
     private var _logout = MutableLiveData<UiState<Int>>()
     val logout: LiveData<UiState<Int>> get() = _logout
@@ -45,9 +53,20 @@ class SettingsViewModel @Inject constructor(val logoutUseCase: LogoutUseCase,val
         _personalSettingsItem.value = getPersonalSettingsItemsUseCase()
 
     }
-    fun getAccountSettingsItems(){
-        _accountSettingsItem.value = getAccountSettingsItemsUseCase().map { it.toUi() }
+
+    fun getAccountSettingsItems() {
+        viewModelScope.launch {
+            val settingsList = getAccountSettingsItemsUseCase().map { setting ->
+                if (setting.settingName == R.string.language) {
+                    val currentCode = getCurrentLanguageUseCase().getOrNull() ?: "en"
+                    val language = getLanguageListUseCase().find { it.code == currentCode }
+                    setting.copy(currentChosenSetting = language?.language)
+                } else setting
+            }
+            _accountSettingsItem.value = settingsList.map { it.toUi() }
+        }
     }
+
 
 
 }

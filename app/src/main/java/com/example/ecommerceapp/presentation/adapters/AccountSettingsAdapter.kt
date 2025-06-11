@@ -12,7 +12,7 @@ import com.example.ecommerceapp.presentation.uimodels.SettingsUiModel
 import com.example.ecommerceapp.presentation.uiutils.GenericDiffUtil
 import com.example.ecommerceapp.presentation.uiutils.VisibilityUtils.show
 
-class AccountSettingsAdapter : RecyclerView.Adapter<AccountSettingsAdapter.AccountSettingsViewHolder>() {
+class AccountSettingsAdapter(val onSettingsClick : (SettingsUiModel) -> Unit) : RecyclerView.Adapter<AccountSettingsAdapter.AccountSettingsViewHolder>() {
    val settingsList = ArrayList<SettingsUiModel>()
    lateinit var  context : Context
     inner class AccountSettingsViewHolder(val binding : AccountSettingsItemBinding) : ViewHolder(binding.root)
@@ -32,11 +32,8 @@ class AccountSettingsAdapter : RecyclerView.Adapter<AccountSettingsAdapter.Accou
     ) {
         holder.binding.settings = settingsList[position]
 
-        if(settingsList[position].settingName == R.string.language){
-            holder.binding.currentChosenSetting.apply {
-                show()
-                setText(settingsList[position].currentChosenSetting!!)
-            }
+        holder.binding.settingsCons.setOnClickListener {
+            onSettingsClick(settingsList[position])
         }
     }
 

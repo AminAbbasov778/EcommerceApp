@@ -80,8 +80,10 @@ class SettingsFragment : Fragment() {
             }
         })
         binding.personalSettingsRecView.adapter = personalSettingsAdapter
-
-        accountSettingsAdapter = AccountSettingsAdapter()
+        accountSettingsAdapter = AccountSettingsAdapter(onSettingsClick = {setting ->
+            when(setting.settingName){
+                R.string.language -> findNavController().navigate(SettingsFragmentDirections.actionSettingsFragmentToLanguageFragment())
+            }})
         binding.accountSettingsRecView.adapter = accountSettingsAdapter
 
     }

@@ -22,12 +22,18 @@
     <string name="adding_product_to_cart_successful">Product is successfully added to cart</string>
     <string name="adding_product_to_cart_failure">Product failed to add cart</string>
     <string name="unknown_error">Unknown error</string>
+    <string name="failed_get_messages">Failed to fetch messages</string>
+    <string name="message_failed">Failed to send message</string>
+    <string name="failed_get_profile_data">Failed to get profile data</string>
     <string name="wrong_something">Something is wrong. Please, try again</string>
     <string name="failure_email">failed to get email</string>
     <string name="failure_username">failed to get username</string>
     <string name="successful_updating_profile">Profile is successfully updated</string>
     <string name="failure_updating_profile">Profile update failed, please try again later</string>
-
+    <string name="remove_from_cart">Remove from Cart</string>
+    <string name="add_to_cart">Add to Cart</string>
+    <string name="reviews">reviews</string>
+    <string name="dollar">$</string>
     <string name="email_not_verified">Email is not verified. please,verify email</string>
     <string name="removing_product_to_cart_successful">Product is successfully removed from cart</string>
     <string name="removing_product_to_cart_failure">Product failed to remove from cart</string>
@@ -86,6 +92,9 @@
     <string name="language">Language</string>
     <string name="about_slada">About Slada</string>
     <string name="english">English</string>
+    <string name="azerbaijani">Azerbaijani</string>
+    <string name="failed_to_fetch_current_lang">Failed to fetch current language</string>
+    <string name="failed_to_set_lang">Failed to set language</string>
     <string name="process_is_successfully_added_to_favorites">Product is successfully added to favorites</string>
     <string name="process_is_successfully_remove_from_favorites">Product is successfully removed from favorites</string>
     <string name="process_failed_to_added_to_favorites">Product failed to favorites</string>
@@ -93,7 +102,7 @@
     <string name="i_already_have_an_account">I already have an account</string>
     <string name="description_app">Effortless eCommerce app design for your mobile store</string>
     <string name="your_voucher_will_expire">Your voucher will expire in 3 days</string>
-    <string name="voucher_description">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt</string>
+    <string name="voucher_description">This message informs you that your discount voucher is set to expire in just 3 days. To avoid missing out, it’s recommended to use the voucher before the expiration date.</string>
     <string name="favorites">Favorites</string>
     <string name="settings">Settings</string>
     <string name="your_profile">Your Profile</string>

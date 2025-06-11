@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.example.ecommerceapp.R
 import com.example.ecommerceapp.databinding.FragmentProfileBinding
 import com.example.ecommerceapp.presentation.uistates.UiState
 import com.example.ecommerceapp.presentation.uiutils.VisibilityUtils.setGone
@@ -44,23 +45,26 @@ class ProfileFragment : Fragment() {
 
     private fun observe() {
 
-        viewModel.profileData.observe(viewLifecycleOwner) {
-            when (it) {
-                is UiState.Success -> {
-                   binding.loading.setGone()
-                    binding.profileImg.setImageBitmap(it.data.imageBitmap)
-                    binding.helloText.text = "Hello, ${it.data.username}"
+        viewModel.profileData.observe(viewLifecycleOwner) {state ->
+            state?.let {
+                when (it) {
+                    is UiState.Success -> {
+                        binding.loading.setGone()
+                        binding.profileImg.setImageBitmap(it.data.imageBitmap)
+                        binding.helloText.text = getString(R.string.hello) + " ${it.data.username}"
+                    }
+
+
+                    is UiState.Error -> {
+                        binding.loading.setGone()
+                        Toast.makeText(context, it.message, Toast.LENGTH_SHORT).show()
+                    }
+
+                    is UiState.Loading -> binding.loading.show()
+
                 }
+            } ?: run { binding.loading.setGone() }
 
-
-                is UiState.Error -> {
-                    binding.loading.setGone()
-                    Toast.makeText(context, it.message, Toast.LENGTH_SHORT).show()
-                }
-
-                is UiState.Loading -> binding.loading.show()
-
-            }
         }
 
     }

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout>
+    <data
+        >
+        <import type="android.view.View">
+        </import>
+        <variable
+            name="chat"
+            type="com.example.ecommerceapp.presentation.uimodels.ChatMessageUiModel" />
+    </data>
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="15dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/transparent">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/productOwnerMessageCard"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="120dp"
+        app:strokeColor="@color/pale_blue"
+        app:cardCornerRadius="15dp"
+        android:visibility="@{chat.isMine ? View.GONE : View.VISIBLE}"
+        android:backgroundTint="@color/pale_blue"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        >
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/productOwnerMessage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:text="@{chat.message}"
+            android:padding="15dp"
+            android:fontFamily="@font/raleway_medium"
+            >
+
+
+        </com.google.android.material.textview.MaterialTextView>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/productOwnerMessageTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:text="@{chat.formattedTime}"
+        android:fontFamily="@font/raleway_medium"
+        android:textColor="@color/second_text_color"
+        android:layout_marginBottom="4dp"
+        android:layout_marginRight="10dp"
+        app:layout_constraintBottom_toBottomOf="@id/productOwnerMessageCard"
+        app:layout_constraintRight_toRightOf="@id/productOwnerMessageCard"
+        >
+
+    </com.google.android.material.textview.MaterialTextView>
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/yourMessageCard"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="120dp"
+        app:strokeColor="@color/pale_blue"
+        app:cardCornerRadius="15dp"
+        android:visibility="@{chat.isMine ? View.VISIBLE : View.GONE}"
+        android:backgroundTint="@color/primary_blue"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        >
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/yourMessage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:text="@{chat.message}"
+            android:padding="15dp"
+            android:fontFamily="@font/raleway_medium"
+            >
+
+        </com.google.android.material.textview.MaterialTextView>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/yourMessageTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:fontFamily="@font/raleway_medium"
+        android:textColor="@color/hint_text"
+        android:text="@{chat.formattedTime}"
+        android:layout_marginBottom="4dp"
+        android:layout_marginRight="10dp"
+        app:layout_constraintBottom_toBottomOf="@id/yourMessageCard"
+        app:layout_constraintRight_toRightOf="@id/yourMessageCard"
+        >
+
+    </com.google.android.material.textview.MaterialTextView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

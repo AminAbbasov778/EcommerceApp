@@ -18,7 +18,7 @@ data class Product(
     val rating: Rating,
     @SerializedName("title")
     val title: String,
-    val color : ArrayList<String>?,
-    val size : ArrayList<String>?,
-    var isFavorite : Boolean
+    val color : ArrayList<String>? = ArrayList(),
+    val size : ArrayList<String>? = ArrayList(),
+    var isFavorite : Boolean? = false
 )

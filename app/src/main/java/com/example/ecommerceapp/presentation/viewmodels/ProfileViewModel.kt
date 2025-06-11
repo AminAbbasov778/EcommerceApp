@@ -18,8 +18,8 @@ import javax.inject.Inject
 @HiltViewModel
 class ProfileViewModel @Inject constructor(val getProfileDataUseCase: GetProfileDataUseCase) :
     ViewModel() {
-    private var _profileData = MutableLiveData<UiState<ProfileUiModel>>()
-    val profileData: LiveData<UiState<ProfileUiModel>> get() = _profileData
+    private var _profileData = MutableLiveData<UiState<ProfileUiModel>?>()
+    val profileData: LiveData<UiState<ProfileUiModel>?> get() = _profileData
 
     init {
         getProfileData()
@@ -41,7 +41,11 @@ class ProfileViewModel @Inject constructor(val getProfileDataUseCase: GetProfile
 
 
                     } else {
-                        _profileData.value = UiState.Error(R.string.process_is_failure)
+                        if(profileData.exceptionOrNull() !is NullPointerException){
+                            _profileData.value = UiState.Error(R.string.failed_get_profile_data)
+                        }else{
+                            _profileData.value = null
+                        }
                     }
                 }
 

@@ -118,7 +118,7 @@ class UserRepositoryImpl @Inject constructor(val firebaseAuth: FirebaseAuth,val 
                             snapshot != null -> {
                                 val profile = snapshot.toObject(Profile::class.java)
                                 if (profile != null) Result.success(profile.toDomain())
-                                else Result.failure(Exception("Profile not found"))
+                                else Result.failure(NullPointerException("Profile not found"))
                             }
 
                             else -> Result.failure(Exception("Unknown error"))

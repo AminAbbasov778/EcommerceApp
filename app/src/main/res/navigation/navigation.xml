@@ -81,6 +81,9 @@
         <argument
             android:name="product"
             app:argType="com.example.ecommerceapp.presentation.uimodels.ProductUiModel" />
+        <action
+            android:id="@+id/action_detailFragment_to_chatFragment"
+            app:destination="@id/chatFragment" />
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
@@ -95,6 +98,9 @@
         <action
             android:id="@+id/action_settingsFragment_to_editProfileFragment"
             app:destination="@id/editProfileFragment" />
+        <action
+            android:id="@+id/action_settingsFragment_to_languageFragment"
+            app:destination="@id/languageFragment" />
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
@@ -141,4 +147,18 @@
         android:name="com.example.ecommerceapp.presentation.fragments.EditProfileFragment"
         android:label="fragment_edit_profile"
         tools:layout="@layout/fragment_edit_profile" />
+    <fragment
+        android:id="@+id/chatFragment"
+        android:name="com.example.ecommerceapp.presentation.fragments.ChatFragment"
+        android:label="fragment_chat"
+        tools:layout="@layout/fragment_chat" >
+        <argument
+            android:name="chatdata"
+            app:argType="com.example.ecommerceapp.presentation.uimodels.ChatNavigationUiModel" />
+    </fragment>
+    <fragment
+        android:id="@+id/languageFragment"
+        android:name="com.example.ecommerceapp.presentation.fragments.LanguageFragment"
+        android:label="fragment_language"
+        tools:layout="@layout/fragment_language" />
 </navigation>

@@ -5,6 +5,6 @@ import javax.inject.Inject
 
 class IsUserLoggedInUseCase @Inject constructor(val firebaseAuthRepository: FirebaseAuthRepository) {
 
-    operator fun invoke(): Boolean  =      firebaseAuthRepository.isUserLoggedIn()
+    operator fun invoke(): Boolean  =  firebaseAuthRepository.isUserLoggedIn()
 
 }
