@@ -7,7 +7,7 @@
 ## 📱 Key Screens & Features
 
 * **Start Page** – App entry with logo and choice between Sign In or Sign Up
-* **Sign In / Sign Up Page** – Register or login via Email (Google/Facebook not used)
+* **Sign In / Sign Up Page** – Register or login via Email 
 * **Home Page** – Browse product slider (ViewPager) and featured items
 * **Search Page** – Search for products
 * **Search Result Page** – View filtered product results
@@ -22,7 +22,7 @@
 * **Profile Page** – View user profile and activity
 * **Edit Profile Page** – Update avatar, name, and other user details
 * **Settings Page** – Configure preferences
-* **Language Page** – Change application language (i18n)
+* **Language Page** – Change application language 
 * **Favorite Page** – Access your liked/favorited products
 
 ---
