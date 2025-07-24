@@ -1,4 +1,4 @@
-# 🛍️ EcommerceApp
+# 🛍️ EcommerceApp (Clean Architecture + MVVM + Hilt)
 
 **EcommerceApp** is a modern Kotlin-based Android e-commerce application that allows users to browse, search, and interact with products in a smooth, responsive interface. Built using MVVM, Clean Architecture, Kotlin Coroutines, and Firebase for real-time functionality.
 
