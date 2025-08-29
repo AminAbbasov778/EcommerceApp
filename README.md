@@ -144,7 +144,7 @@ git clone https://github.com/AminAbbasov778/EcommerceApp.git
 ## 📬 Contact
 
 For any inquiries or collaboration:
-**Amin Abbasov** – [amin.abbasov778@gmail.com](mailto:amin.abbasov778@gmail.com)
+**Amin Abbasov** – [amin.abbasov778@gmail.com](mailto:aminabbasov667@gmail.com)
 
 ---
 
